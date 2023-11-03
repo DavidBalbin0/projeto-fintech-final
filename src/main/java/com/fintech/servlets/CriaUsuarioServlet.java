@@ -1,6 +1,9 @@
 package com.fintech.servlets;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -33,10 +36,14 @@ public class CriaUsuarioServlet extends HttpServlet {
 		
 		ValidadorService validadorService = new ValidadorService();
 		
-		try {
-			validadorService.validate(usuarioDto);
-		} catch (ValidadorException erro) {
+		HashMap<String, String> erros = new HashMap<String, String>();
+		
+		validadorService.validate(usuarioDto, erros);
 			
-		}
+		if(!erros.isEmpty()){ 
+			request.setAttribute("erros", erros);
+			} 
+		
+		
 	}
 }

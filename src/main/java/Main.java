@@ -1,4 +1,6 @@
 import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.fintech.dto.UsuarioDto;
 import com.fintech.model.Conta;
@@ -27,24 +29,24 @@ public class Main {
 //		
 //		System.out.println(david);
 		
-//		UsuarioDto usuarioDto = new UsuarioDto("foto", 
-//				"David1", 
-//				agora, 
-//				"masculino", 
-//				"debarbino@gmail.com", 
-//				"12345678");
-//		
-//		ValidadorService validadorService = new ValidadorService();
-//		
-//		try {
-//			validadorService.validate(usuarioDto);
-//			System.out.println("usuariodto criado");
-//		} catch (ValidadorException erro) {
-//			System.out.println(erro.getMessage());
-//		}
+		UsuarioDto usuarioDto = new UsuarioDto("foto", 
+				"", 
+				agora, 
+				"", 
+				"debarbino@gmail.com", 
+				"12345678");
 		
+		ValidadorService validadorService = new ValidadorService();
+		HashMap<String, String> erros = new HashMap<String, String>();
 		
-
+		validadorService.validate(usuarioDto, erros);
+		if(!erros.isEmpty()){
+			System.out.println(erros);
+		}else {
+			System.out.println("UsuarioDto criado!");
+		}
+		
+	
 	}
 	
 
