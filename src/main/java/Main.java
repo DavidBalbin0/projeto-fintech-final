@@ -32,8 +32,8 @@ public class Main {
 		UsuarioDto usuarioDto = new UsuarioDto("foto", 
 				"", 
 				agora, 
-				"", 
-				"debarbino@gmail.com", 
+				"masculino", 
+				"debarbinogmail.com", 
 				"12345678");
 		
 		ValidadorService validadorService = new ValidadorService();

@@ -45,7 +45,9 @@ public class CriaUsuarioServlet extends HttpServlet {
 		if(!erros.isEmpty()){ 
 			request.setAttribute("erros", erros);
 			request.getRequestDispatcher("/jsp/registro.jsp").forward(request, response);
-		} 
+		} else {
+			response.sendRedirect(request.getContextPath() + "/jsp/login.jsp");
+		}
 		
 		
 	}
