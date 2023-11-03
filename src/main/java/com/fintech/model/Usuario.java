@@ -1,6 +1,7 @@
 package com.fintech.model;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.UUID;
 
 public class Usuario implements Serializable{
@@ -10,13 +11,12 @@ public class Usuario implements Serializable{
 	private String id;
 	private String foto;
 	private String nome;
-	private String dataNasc;
+	private Timestamp dataNasc;
 	private String sexo;
 	private String email;
 	private String senha;
 	
-	public Usuario(String foto, String nome, String dataNasc, String sexo, String email, String senha) {
-		super();
+	public Usuario(String foto, String nome, Timestamp dataNasc, String sexo, String email, String senha) {
 		this.id = UUID.randomUUID().toString();
 		this.foto = foto;
 		this.nome = nome;
@@ -42,7 +42,7 @@ public class Usuario implements Serializable{
 		return nome;
 	}
 
-	public String getDataNasc() {
+	public Timestamp getDataNasc() {
 		return dataNasc;
 	}
 
@@ -56,6 +56,12 @@ public class Usuario implements Serializable{
 
 	public String getSenha() {
 		return senha;
+	}
+
+	@Override
+	public String toString() {
+		return "Usuario [id=" + id + ", foto=" + foto + ", nome=" + nome + ", dataNasc=" + dataNasc + ", sexo=" + sexo
+				+ ", email=" + email + "]";
 	}
 	
 	

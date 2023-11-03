@@ -1,6 +1,6 @@
 package com.fintech.model;
 
-import java.security.Timestamp;
+import java.sql.Timestamp;
 import java.util.UUID;
 
 public abstract class Transacao {

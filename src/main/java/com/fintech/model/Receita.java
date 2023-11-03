@@ -1,6 +1,6 @@
 package com.fintech.model;
 
-import java.security.Timestamp;
+import java.sql.Timestamp;
 
 public class Receita extends Transacao {
 
