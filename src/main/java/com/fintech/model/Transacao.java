@@ -1,6 +1,7 @@
 package com.fintech.model;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 public abstract class Transacao {
@@ -8,10 +9,10 @@ public abstract class Transacao {
 	private String id;
 	private String descricao;
 	private String categoria;
-	private Timestamp data;
+	private LocalDateTime data;
 	private String contaId;
 	
-	public Transacao (String descricao, String categoria, Timestamp data, String contaId) {
+	public Transacao (String descricao, String categoria, LocalDateTime data, String contaId) {
 		
 		this.id = UUID.randomUUID().toString();
 		this.descricao = descricao;
@@ -32,7 +33,7 @@ public abstract class Transacao {
 		return categoria;
 	}
 	
-	public Timestamp getData() {
+	public LocalDateTime getData() {
 		return data;
 	}
 	
