@@ -16,6 +16,7 @@
         <span class="error" id="nome-error">
             <c:out value="${erros['nome']}" />
         </span>
+
         <br />
         
         <!-- Campo de Foto -->
@@ -33,6 +34,7 @@
             <c:out value="${errors['dataNasc']}" />
         </span>
         <br />
+        
         
         <!-- Campo de Sexo -->
         <label for="sexo">Sexo:</label>
