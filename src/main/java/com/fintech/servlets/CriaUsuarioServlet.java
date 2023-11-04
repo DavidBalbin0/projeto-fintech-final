@@ -1,19 +1,17 @@
 package com.fintech.servlets;
 
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+import com.fintech.dto.UsuarioDto;
+import com.fintech.service.ValidadorService;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.fintech.dto.UsuarioDto;
-import com.fintech.service.ValidadorService;
-import com.fintech.validacao.ValidadorException;
+import java.io.IOException;
+import java.util.HashMap;
 
 @WebServlet("/cria-usuario")
 public class CriaUsuarioServlet extends HttpServlet {
@@ -21,7 +19,7 @@ public class CriaUsuarioServlet extends HttpServlet {
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/registro.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher(request.getContextPath() + "/jsp/registro.jsp");
         dispatcher.forward(request, response);
 	}
 
