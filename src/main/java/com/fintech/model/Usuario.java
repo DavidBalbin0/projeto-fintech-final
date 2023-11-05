@@ -11,14 +11,14 @@ public class Usuario implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private String id;
-	private String foto;
+	private byte[] foto;
 	private String nome;
 	private LocalDateTime dataNasc;
 	private String sexo;
 	private String email;
 	private String senha;
 	
-	public Usuario(String foto, String nome, LocalDateTime dataNasc, String sexo, String email, String senha) {
+	public Usuario(byte[] foto, String nome, LocalDateTime dataNasc, String sexo, String email, String senha) {
 		this.id = UUID.randomUUID().toString();
 		this.foto = foto;
 		this.nome = nome;
@@ -36,7 +36,7 @@ public class Usuario implements Serializable{
 		return id;
 	}
 
-	public String getFoto() {
+	public byte[] getFoto() {
 		return foto;
 	}
 

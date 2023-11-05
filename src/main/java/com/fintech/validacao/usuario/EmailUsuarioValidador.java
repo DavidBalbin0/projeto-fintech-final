@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.regex.Pattern;
 import com.fintech.dto.UsuarioDto;
 import com.fintech.validacao.Validador;
-import com.fintech.validacao.ValidadorException;
+
 
 public class EmailUsuarioValidador implements Validador<UsuarioDto> {
 	@Override

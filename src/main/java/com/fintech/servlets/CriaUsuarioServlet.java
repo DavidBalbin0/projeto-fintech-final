@@ -19,8 +19,8 @@ public class CriaUsuarioServlet extends HttpServlet {
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		RequestDispatcher dispatcher = request.getRequestDispatcher(request.getContextPath() + "/jsp/registro.jsp");
-        dispatcher.forward(request, response);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/registro.jsp");
+		dispatcher.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -31,6 +31,7 @@ public class CriaUsuarioServlet extends HttpServlet {
 		String sexo = request.getParameter("sexo");
 		String email = request.getParameter("email");
 		String senha = request.getParameter("senha");
+
 
 		UsuarioDto usuarioDto = new UsuarioDto(foto, nome, null, sexo, email, senha);
 		

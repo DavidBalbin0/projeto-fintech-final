@@ -5,7 +5,6 @@ import java.util.regex.Pattern;
 
 import com.fintech.dto.UsuarioDto;
 import com.fintech.validacao.Validador;
-import com.fintech.validacao.ValidadorException;
 
 public class NomeUsuarioValidador implements Validador<UsuarioDto> {
 	@Override
