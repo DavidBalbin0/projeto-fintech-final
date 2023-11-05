@@ -9,6 +9,7 @@ import com.fintech.validacao.Validador;
 
 import com.fintech.validacao.usuario.EmailUsuarioValidador;
 import com.fintech.validacao.usuario.NomeUsuarioValidador;
+import com.fintech.validacao.usuario.SenhaUsuarioValidador;
 //import com.fintech.validacao.usuario.SexoUsuarioValidador;
 
 public class ValidadorService {
@@ -18,6 +19,7 @@ public class ValidadorService {
 		validadores.add(new NomeUsuarioValidador());
 		validadores.add(new EmailUsuarioValidador());
 //		validadores.add(new SexoUsuarioValidador());
+		validadores.add(new SenhaUsuarioValidador());
 	}
 	
 	public void validate(UsuarioDto usuarioDto, HashMap<String, String> erros) {

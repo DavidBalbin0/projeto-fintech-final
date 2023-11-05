@@ -7,7 +7,7 @@ import com.fintech.model.Conta;
 import com.fintech.model.Receita;
 import com.fintech.model.Usuario;
 import com.fintech.service.ValidadorService;
-import com.fintech.validacao.ValidadorException;
+
 
 public class Main {
 
@@ -33,8 +33,8 @@ public class Main {
 				"", 
 				agora, 
 				"masculino", 
-				"debarbinogmail.com", 
-				"12345678");
+				"debarbinogmail.com",
+				"123js");
 		
 		ValidadorService validadorService = new ValidadorService();
 		HashMap<String, String> erros = new HashMap<String, String>();
