@@ -10,7 +10,8 @@ import com.fintech.validacao.Validador;
 import com.fintech.validacao.usuario.EmailUsuarioValidador;
 import com.fintech.validacao.usuario.NomeUsuarioValidador;
 import com.fintech.validacao.usuario.SenhaUsuarioValidador;
-//import com.fintech.validacao.usuario.SexoUsuarioValidador;
+import com.fintech.validacao.usuario.SexoUsuarioValidador;
+
 
 public class ValidadorService {
 	private List<Validador<UsuarioDto>> validadores = new ArrayList<Validador<UsuarioDto>>();
@@ -18,8 +19,8 @@ public class ValidadorService {
 	public ValidadorService() {
 		validadores.add(new NomeUsuarioValidador());
 		validadores.add(new EmailUsuarioValidador());
-//		validadores.add(new SexoUsuarioValidador());
 		validadores.add(new SenhaUsuarioValidador());
+		validadores.add(new SexoUsuarioValidador());
 	}
 	
 	public void validate(UsuarioDto usuarioDto, HashMap<String, String> erros) {
