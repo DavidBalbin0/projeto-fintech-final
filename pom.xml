@@ -36,6 +36,12 @@
           <version>6.0</version>
           <scope>provided</scope>
       </dependency>
+      <dependency>
+          <groupId>org.mindrot</groupId>
+          <artifactId>jbcrypt</artifactId>
+          <version>0.4</version> <!-- Verifique a versão mais recente no repositório Maven -->
+      </dependency>
+
 
   </dependencies>
 </project>

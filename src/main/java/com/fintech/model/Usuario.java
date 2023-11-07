@@ -1,5 +1,7 @@
 package com.fintech.model;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 import java.io.Serializable;
 
 import java.sql.Timestamp;
@@ -18,14 +20,14 @@ public class Usuario implements Serializable{
 	private String email;
 	private String senha;
 	
-	public Usuario(byte[] foto, String nome, LocalDateTime dataNasc, String sexo, String email, String senha) {
+	public Usuario(byte[] foto, String nome, LocalDateTime dataNasc, String sexo, String email, String senhaSimples) {
 		this.id = UUID.randomUUID().toString();
 		this.foto = foto;
 		this.nome = nome;
 		this.dataNasc = dataNasc;
 		this.sexo = sexo;
 		this.email = email;
-		this.senha = senha;
+		this.senha = hashSenha(senhaSimples);
 	}
 
 	public static long getSerialversionuid() {
@@ -60,13 +62,19 @@ public class Usuario implements Serializable{
 		return senha;
 	}
 
+	private String hashSenha(String senhaSimples){
+		String salt = BCrypt.gensalt(12);
+
+		return BCrypt.hashpw(senhaSimples, salt);
+	}
+
 	@Override
 	public String toString() {
 		return "Usuario [id=" + id + ", foto=" + foto + ", nome=" + nome + ", dataNasc=" + dataNasc + ", sexo=" + sexo
-				+ ", email=" + email + "]";
+				+ ", email=" + email + " senha= " + senha + "]";
 	}
-	
-	
+
+
 	
 	
 }

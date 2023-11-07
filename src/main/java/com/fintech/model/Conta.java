@@ -24,6 +24,16 @@ public class Conta implements Serializable {
 		return serialVersionUID;
 	}
 
+	public void sacarValor(double valor){
+		if (valor < saldo) {
+			saldo -= valor;
+		}
+	}
+
+	public void depositarValor(double valor){
+		saldo += valor;
+	}
+
 	public String getId() {
 		return id;
 	}
@@ -39,6 +49,14 @@ public class Conta implements Serializable {
 	public String getUsuarioId() {
 		return usuarioId;
 	}
-	
 
+	@Override
+	public String toString() {
+		return "Conta{" +
+				"id='" + id + '\'' +
+				", nome='" + nome + '\'' +
+				", saldo=" + saldo +
+				", usuarioId='" + usuarioId + '\'' +
+				'}';
+	}
 }

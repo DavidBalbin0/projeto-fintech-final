@@ -1,7 +1,9 @@
 package com.fintech.servlets;
 
+
 import com.fintech.dto.UsuarioDto;
 import com.fintech.service.ValidadorService;
+import org.mindrot.jbcrypt.BCrypt;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -40,24 +42,30 @@ public class CriaUsuarioServlet extends HttpServlet {
 		String senha = request.getParameter("senha");
 
 		InputStream fotoInputStream = fotoPart.getInputStream();
-
 		byte[] fotoBytes = fotoInputStream.readAllBytes();
 
 		UsuarioDto usuarioDto = new UsuarioDto(fotoBytes, nome, null, sexo, email, senha);
-		
+
 		ValidadorService validadorService = new ValidadorService();
-		
 		HashMap<String, String> erros = new HashMap<String, String>();
-		
 		validadorService.validate(usuarioDto, erros);
-			
-		if(!erros.isEmpty()){ 
+
+		if(!erros.isEmpty()){
 			request.setAttribute("erros", erros);
 			request.getRequestDispatcher("/jsp/registro.jsp").forward(request, response);
 		} else {
+
+
+
+
+
+
 			response.sendRedirect(request.getContextPath() + "/jsp/login.jsp");
 		}
-		
+
+
 		
 	}
+
+
 }
