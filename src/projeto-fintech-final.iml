@@ -30,18 +30,17 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" exported="" name="J2EE 1.4-J2EE 1.4" level="project" />
-    <orderEntry type="library" exported="" name="Java EE 6-Java EE 6" level="project" />
-    <orderEntry type="module-library" exported="">
+    <orderEntry type="library" scope="RUNTIME" name="Java EE 6-Java EE 6" level="project" />
+    <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/Documents/tomcat/apache-tomcat-9.0.82/lib/servlet-api.jar!/" />
+          <root url="jar://$MODULE_DIR$/main/webapp/WEB-INF/lib/taglibs-standard-spec-1.2.5.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="module-library" exported="">
+    <orderEntry type="module-library">
       <library>
         <CLASSES>
           <root url="jar://$MODULE_DIR$/main/webapp/WEB-INF/lib/taglibs-standard-impl-1.2.5.jar!/" />
@@ -50,10 +49,10 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="module-library" exported="">
+    <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/main/webapp/WEB-INF/lib/taglibs-standard-spec-1.2.5.jar!/" />
+          <root url="jar://$USER_HOME$/Documents/javax.servlet-api-4.0.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

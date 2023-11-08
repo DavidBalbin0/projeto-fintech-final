@@ -3,14 +3,14 @@ package com.fintech.dto;
 import java.time.LocalDateTime;
 
 public class UsuarioDto {
-	private String foto;
+	private byte[] foto;
 	private String nome;
 	private LocalDateTime dataNasc;
 	private String sexo;
 	private String email;
 	private String senha;
 	
-	public UsuarioDto(String foto, String nome, LocalDateTime dataNasc, String sexo, String email, String senha) {
+	public UsuarioDto(byte[] foto, String nome, LocalDateTime dataNasc, String sexo, String email, String senha) {
 		super();
 		this.foto = foto;
 		this.nome = nome;
@@ -20,7 +20,7 @@ public class UsuarioDto {
 		this.senha = senha;
 	}
 
-	public String getFoto() {
+	public byte[] getFoto() {
 		return foto;
 	}
 
