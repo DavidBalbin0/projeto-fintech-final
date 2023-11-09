@@ -25,7 +25,6 @@ public class Investimento implements Serializable {
 	}
 
 	public void depositarValor(double valor){
-		//verifica se é para retirar saldo em conta, e adiciona o saldo no investimento
 		if(vinculadoSaldoConta){
 			conta.sacarValor(valor);
 		}
@@ -33,7 +32,6 @@ public class Investimento implements Serializable {
 	}
 
 	public void retirarValor (double valor){
-		//verifica se é para adicionar saldo em conta, e retira o saldo no investimento
 		if(vinculadoSaldoConta){
 			conta.depositarValor(valor);
 		}

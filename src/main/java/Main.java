@@ -1,13 +1,9 @@
 import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.Map;
 
-import com.fintech.dto.UsuarioDto;
 import com.fintech.model.Conta;
 import com.fintech.model.Investimento;
 import com.fintech.model.Receita;
 import com.fintech.model.Usuario;
-import com.fintech.service.ValidadorService;
 
 
 public class Main {
