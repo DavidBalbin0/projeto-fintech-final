@@ -1,27 +1,36 @@
 package com.fintech.model;
 
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 public abstract class Transacao {
 	
-	private String id;
+	private Long id;
 	private String descricao;
 	private String categoria;
+
+	private double valor ;
 	private LocalDateTime data;
-	private String contaId;
+	private Long contaId;
 	
-	public Transacao (String descricao, String categoria, LocalDateTime data, String contaId) {
-		
-		this.id = UUID.randomUUID().toString();
+	public Transacao (String descricao, String categoria, double valor, LocalDateTime data, Long contaId) {
+
 		this.descricao = descricao;
 		this.categoria = categoria;
 		this.data = data;
 		this.contaId = contaId;
+		this.valor = valor;
+	}
+	public Transacao (Long id, String descricao, String categoria, double valor, LocalDateTime data, Long contaId) {
+		this.id = id;
+		this.descricao = descricao;
+		this.categoria = categoria;
+		this.data = data;
+		this.contaId = contaId;
+		this.valor = valor;
 	}
 	
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
 	
@@ -36,8 +45,8 @@ public abstract class Transacao {
 	public LocalDateTime getData() {
 		return data;
 	}
-	
-	public String getContaId() {
-		return contaId;
+
+	public double getValor() {
+		return valor;
 	}
 }

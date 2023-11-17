@@ -7,16 +7,24 @@ public class Conta implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
-	private String id;
+	private Long id;
 	private String nome;
 	private double saldo;
-	private String usuarioId;
+	private Long usuarioId;
 	
-	public Conta (String nome, double saldo, String usuarioId) {
+	public Conta (String nome, double saldoInicial, Long usuarioId) {
 		
-		this.id = UUID.randomUUID().toString();
+		this.id =usuarioId;
 		this.nome = nome;
-		this.saldo = saldo;
+		this.saldo = saldoInicial;
+		this.usuarioId = usuarioId;
+	}
+
+	public Conta (Long id, String nome, double saldoInicial, Long usuarioId) {
+		this.id = id;
+		this.id = usuarioId;
+		this.nome = nome;
+		this.saldo = saldoInicial;
 		this.usuarioId = usuarioId;
 	}
 
@@ -34,9 +42,7 @@ public class Conta implements Serializable {
 		saldo += valor;
 	}
 
-	public String getId() {
-		return id;
-	}
+	public Long getId() { return id; }
 
 	public String getNome() {
 		return nome;
@@ -46,9 +52,7 @@ public class Conta implements Serializable {
 		return saldo;
 	}
 
-	public String getUsuarioId() {
-		return usuarioId;
-	}
+	public Long getUsuarioId() { return usuarioId; }
 
 	@Override
 	public String toString() {

@@ -1,0 +1,17 @@
+<configuration>
+
+    <!-- Configurações de log geral -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <root level="debug">
+        <appender-ref ref="STDOUT"/>
+    </root>
+
+    <!-- Configurações específicas do Flyway -->
+    <logger name="org.flywaydb" level="debug"/>
+
+</configuration>
