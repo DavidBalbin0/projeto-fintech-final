@@ -10,7 +10,7 @@
   <!-- Mapeamento da servlet -->
   <servlet-mapping>
     <servlet-name>CriaUsuarioServlet</servlet-name>
-    <url-pattern>/cria-usuario</url-pattern>
+    <url-pattern>/criausuario</url-pattern>
   </servlet-mapping>
 
   <welcome-file-list>

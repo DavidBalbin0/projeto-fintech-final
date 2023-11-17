@@ -8,13 +8,15 @@ public class ReceitaDto {
     private String descricao;
     private String categoria;
     private LocalDateTime data;
+    private final Long contaId;
 
-    public ReceitaDto (double valor, String descricao, String categoria, LocalDateTime data) {
+    public ReceitaDto (String descricao, double valor,  String categoria, LocalDateTime data, Long contaId) {
 
         this.valor = valor;
         this.descricao = descricao;
         this.categoria = categoria;
         this.data = data;
+        this.contaId = contaId;
 
     }
 

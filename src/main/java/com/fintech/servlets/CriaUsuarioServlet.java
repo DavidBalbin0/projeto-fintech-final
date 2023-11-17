@@ -2,6 +2,7 @@ package com.fintech.servlets;
 
 
 import com.fintech.dto.UsuarioDto;
+import com.fintech.service.UsuarioService;
 import com.fintech.service.ValidadorUsuarioService;
 
 import javax.servlet.RequestDispatcher;
@@ -42,20 +43,21 @@ public class CriaUsuarioServlet extends HttpServlet {
 		byte[] fotoBytes = fotoInputStream.readAllBytes();
 
 		UsuarioDto usuarioDto = new UsuarioDto(fotoBytes, nome, null, sexo, email, senha);
+		HashMap<String, String> erros = new HashMap<String, String>();
 
 		ValidadorUsuarioService validadorService = new ValidadorUsuarioService();
-		HashMap<String, String> erros = new HashMap<String, String>();
-		validadorService.validar(usuarioDto, erros);
 
+
+
+
+		validadorService.validar(usuarioDto, erros);
 		if(!erros.isEmpty()){
 			request.setAttribute("erros", erros);
 			request.getRequestDispatcher("/jsp/registro.jsp").forward(request, response);
 		} else {
 
-
-
-
-
+			UsuarioService usuarioService = new UsuarioService();
+			usuarioService.cadastrar(usuarioDto);
 
 			response.sendRedirect(request.getContextPath() + "/jsp/login.jsp");
 		}

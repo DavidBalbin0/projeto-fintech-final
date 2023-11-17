@@ -6,7 +6,7 @@ import java.util.UUID;
 public class Investimento implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
-	private String id;
+	private Long id;
 	private String descricao;
 	private double saldo;
 
@@ -17,7 +17,15 @@ public class Investimento implements Serializable {
 	
 	public Investimento(String descricao, double meta, Conta conta, double saldoInicial, boolean vinculadoSaldoConta) {
 		this.vinculadoSaldoConta = vinculadoSaldoConta;
-		this.id = UUID.randomUUID().toString();
+		this.descricao = descricao;
+		this.meta = meta;
+		this.conta = conta;
+		depositarValor(saldoInicial);
+	}
+
+	public Investimento(Long id, String descricao, double meta, Conta conta, double saldoInicial, boolean vinculadoSaldoConta) {
+		this.id = id;
+		this.vinculadoSaldoConta = vinculadoSaldoConta;
 		this.descricao = descricao;
 		this.meta = meta;
 		this.conta = conta;
@@ -37,7 +45,8 @@ public class Investimento implements Serializable {
 		}
 		saldo -= valor;
 	}
-	public String getId() {
+
+	public Long getId() {
 		return id;
 	}
 
