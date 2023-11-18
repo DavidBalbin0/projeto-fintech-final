@@ -22,7 +22,6 @@ public class Conta implements Serializable {
 
 	public Conta (Long id, String nome, double saldoInicial, Long usuarioId) {
 		this.id = id;
-		this.id = usuarioId;
 		this.nome = nome;
 		this.saldo = saldoInicial;
 		this.usuarioId = usuarioId;

@@ -35,6 +35,10 @@ public class ReceitaDto {
     public LocalDateTime getData() {
         return data;
     }
+
+    public Long getContaId() {
+        return contaId;
+    }
 }
 
 
