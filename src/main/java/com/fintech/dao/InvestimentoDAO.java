@@ -1,5 +1,6 @@
 package com.fintech.dao;
 
+import com.fintech.dto.InvestimentoDto;
 import com.fintech.model.Conta;
 import com.fintech.model.Investimento;
 
@@ -55,7 +56,7 @@ public class InvestimentoDAO {
     }
 
 
-    public Long cadastrarInvestimento(Investimento investimento) {
+    public Long cadastrarInvestimento(InvestimentoDto investimentoDto) {
         Long idInvestimentoCadastrado = null;
         String sql = "{call inserir_investimento(?, ?, ?, ?, ?, ?, ?)}";
 

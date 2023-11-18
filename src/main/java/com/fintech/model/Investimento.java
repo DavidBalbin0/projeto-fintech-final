@@ -62,11 +62,5 @@ public class Investimento implements Serializable {
 		return conta;
 	}
 
-	public double getSaldo() {
-		return saldo;
-	}
 
-	public boolean isVinculadoSaldoConta() {
-		return vinculadoSaldoConta;
-	}
 }

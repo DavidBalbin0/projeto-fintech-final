@@ -59,8 +59,10 @@ public class Main {
         System.out.println(contaDavid);
 
 
-//		InvestimentoDto investimento = new
-//				InvestimentoDto("APLICACAO", 1000.00,  50.0, contaDavid.getId(), true);
+		InvestimentoDto investimento = new
+				InvestimentoDto("APLICACAO", 1000.00,  50.0, contaDavid.getId(), true);
+
+        daoFactory
 //		InvestimentoDto investimento2 =
 //				new InvestimentoDto("APLICACAO", 1000.00, 100.0, contaDavid.getId(), true);
 //
