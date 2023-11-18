@@ -58,16 +58,18 @@ public class InvestimentoDAO {
 
     public Long cadastrarInvestimento(InvestimentoDto investimentoDto) {
         Long idInvestimentoCadastrado = null;
-        String sql = "{call inserir_investimento(?, ?, ?, ?, ?, ?, ?)}";
+        String sql = "{call inserir_investimento(?, ?, ?, ?, ?, ?)}";
 
         try (CallableStatement callableStatement = conexao.prepareCall(sql)) {
 
             // Configurar os parâmetros da instrução SQL
-            callableStatement.setString(1, investimento.getDescricao());
-            callableStatement.setDouble(2, investimento.getMeta());
-            callableStatement.setLong(3, investimento.getConta().getId());
-            callableStatement.setBoolean(4, investimento.isVinculadoSaldoConta());
-            callableStatement.setDouble(5, investimento.getSaldo());
+            callableStatement.setString(1, investimentoDto.getDescricao());
+            callableStatement.setDouble(2, investimentoDto.getSaldo());
+            callableStatement.setDouble(3, investimentoDto.getMeta());
+            callableStatement.setBoolean(4, investimentoDto.isVinculadoSaldoConta());
+            callableStatement.setLong(5, investimentoDto.getContaId());
+
+
 
             // Registrar o parâmetro de saída para o ID
             callableStatement.registerOutParameter(6, Types.NUMERIC);

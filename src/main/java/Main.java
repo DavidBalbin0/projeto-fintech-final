@@ -2,6 +2,7 @@ import java.time.LocalDateTime;
 import java.util.HashMap;
 
 import com.fintech.dao.ContaDAO;
+import com.fintech.dao.InvestimentoDAO;
 import com.fintech.dao.OracleDAOFactory;
 import com.fintech.dao.UsuarioDAO;
 import com.fintech.db.FlywayConfig;
@@ -30,8 +31,8 @@ public class Main {
                 "David",
                 agora,
                 "MASCULINO",
-                "debarbinsso@gmail.com",
-                "12345628"
+                "debasSrDSDSDdssDdsSsbinsso@gmail.com",
+                "123456d28"
         );
         Long idDavid = usuarioService.cadastrar(david);
         System.out.println(idDavid);
@@ -59,13 +60,21 @@ public class Main {
         System.out.println(contaDavid);
 
 
-		InvestimentoDto investimento = new
-				InvestimentoDto("APLICACAO", 1000.00,  50.0, contaDavid.getId(), true);
+		InvestimentoDto investimentoDto = new
+				InvestimentoDto("APLICACAO", 1000.00,  50.0,  true, contaDavid.getId());
 
-        daoFactory
-//		InvestimentoDto investimento2 =
-//				new InvestimentoDto("APLICACAO", 1000.00, 100.0, contaDavid.getId(), true);
-//
+        InvestimentoDAO  investimentoDAO = daoFactory.pegaInvestimentoDao();
+        Long investimentoId = investimentoDAO.cadastrarInvestimento(investimentoDto);
+        Investimento investimento = investimentoDAO.buscaPorId(investimentoId);
+        System.out.println(investimento);
+
+
+		InvestimentoDto investimentoDto2 = new InvestimentoDto("APLICACAO", 1000.00, 100.0,true,  contaDavid.getId());
+        Long investimentoId2 = investimentoDAO.cadastrarInvestimento(investimentoDto2);
+        Investimento investimento2 = investimentoDAO.buscaPorId(investimentoId2);
+        System.out.println(investimento2);
+
+
 //		ReceitaDto salario = new ReceitaDto("Salario do mes", 1500.00, "Salario",   agora, contaDavid.getId());
 //
 //		DespesaDto fiap = new DespesaDto(, "mensalidade fiap", 690.00, "mensalidade", agora);
