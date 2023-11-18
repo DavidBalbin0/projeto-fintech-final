@@ -1,6 +1,7 @@
 package com.fintech.dao;
 
 import com.fintech.dto.ReceitaDto;
+import com.fintech.model.Despesa;
 import com.fintech.model.Receita;
 
 import java.sql.*;
@@ -54,7 +55,7 @@ public class ReceitaDAO {
 
     public Long cadastra(ReceitaDto receitaDto){
         Long idReceitaCadastrada = null;
-        String sql = "{call inserir_receita(?, ?, ?, ?, ?)}";
+        String sql = "{call inserir_receita(?, ?, ?, ?, ?, ?)}";
 
         try (CallableStatement callableStatement = conexao.prepareCall(sql)) {
             callableStatement.setString(1, receitaDto.getDescricao());
@@ -90,4 +91,28 @@ public class ReceitaDAO {
 
         return new Receita(id, descricao, categoria, valor, data, contaId);
     }
+
+    public List<Receita> buscarTodasAsReceitasPorContaId(Long idConta) {
+        List receitas = new ArrayList<>();
+
+        String sql = "SELECT * FROM receita WHERE CONTA_ID = ?";
+
+        try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
+            stmt.setLong(1, idConta);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    Receita receita = mapearReceita(rs);
+                    receitas.add(receita);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(); // Tratar a exceção apropriadamente no seu código real
+        }
+        return receitas;
+    }
+
+
+
+
 }

@@ -26,7 +26,7 @@ public class Usuario implements Serializable{
 		this.dataNasc = dataNasc;
 		this.sexo = sexo;
 		this.email = email;
-		this.senha = hashSenha(senhaSimples);
+		this.senha = senhaSimples;
 	}
 
 	public Usuario(Long id, byte[] foto, String nome, LocalDateTime dataNasc, Sexo sexo, String email, String senhaSimples) {
@@ -36,7 +36,7 @@ public class Usuario implements Serializable{
 		this.dataNasc = dataNasc;
 		this.sexo = sexo;
 		this.email = email;
-		this.senha = hashSenha(senhaSimples);
+		this.senha = senhaSimples;
 	}
 
 
@@ -73,11 +73,7 @@ public class Usuario implements Serializable{
 		return senha;
 	}
 
-	private String hashSenha(String senhaSimples){
-		String salt = BCrypt.gensalt(12);
 
-		return BCrypt.hashpw(senhaSimples, salt);
-	}
 
 	@Override
 	public String toString() {

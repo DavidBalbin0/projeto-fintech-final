@@ -24,18 +24,7 @@ public class UsuarioDAO {
 
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
-
-                    Long id = rs.getLong("id");
-                    byte[] foto = rs.getBytes("foto");
-                    String nome = rs.getString("Nome");
-                    Timestamp timestamp = rs.getTimestamp("data_nasc");
-                    LocalDateTime dataNasc = timestamp.toLocalDateTime();
-                    String sexoString = rs.getString("sexo");
-                    Sexo sexo = Sexo.valueOf(sexoString.toUpperCase());
-                    String email = rs.getString("email");
-                    String senha = rs.getString("senha");
-                    usuario = new Usuario(id, foto, nome, dataNasc, sexo, email, senha);
-
+                    usuario = mapearUsuario(rs);
                 }
             }
         } catch (SQLException e) {
@@ -71,4 +60,36 @@ public class UsuarioDAO {
         return idUsuarioCadastrado;
     }
 
+    public Usuario buscarPorEmail(String email) {
+        Usuario usuario = null;
+        String sql = "SELECT * FROM usuario WHERE email = ?";
+
+        try (PreparedStatement stmt = conexao.prepareStatement(sql)){
+
+            stmt.setString(1, email);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    usuario = mapearUsuario(rs);
+                }
+            }
+        } catch (SQLException e) {
+            e.getMessage();
+        }
+        return usuario;
+    }
+
+    public Usuario mapearUsuario(ResultSet rs) throws SQLException{
+        Long id = rs.getLong("id");
+        byte[] foto = rs.getBytes("foto");
+        String nome = rs.getString("Nome");
+        Timestamp timestamp = rs.getTimestamp("data_nasc");
+        LocalDateTime dataNasc = timestamp.toLocalDateTime();
+        String sexoString = rs.getString("sexo");
+        Sexo sexo = Sexo.valueOf(sexoString.toUpperCase());
+        String email = rs.getString("email");
+        String senha = rs.getString("senha");
+
+        return new Usuario(id, foto, nome, dataNasc, sexo, email, senha);
+    }
 }

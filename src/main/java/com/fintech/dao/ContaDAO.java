@@ -23,12 +23,7 @@ public class ContaDAO {
 
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
-                    Long id = rs.getLong("id");
-                    String nome = rs.getString("nome");
-                    double saldo = rs.getDouble("saldo");
-                    Long usuarioId = rs.getLong("usuario_id");
-
-                    conta = new Conta(id, nome, saldo, usuarioId);
+                   conta = mapearConta(rs);
                 }
             }
         } catch (SQLException e){
@@ -46,12 +41,7 @@ public class ContaDAO {
              ResultSet rs = stmt.executeQuery()){
 
             while(rs.next()){
-                Long id = rs.getLong("id");
-                String nome = rs.getString("nome");
-                double saldo = rs.getDouble("saldo");
-                Long usuarioId = rs.getLong("usuario_id");
-
-                Conta conta = new Conta(id, nome, saldo, usuarioId);
+               Conta conta = mapearConta(rs);
                 contas.add(conta);
             }
 
@@ -84,5 +74,34 @@ public class ContaDAO {
             e.printStackTrace();  // Tratar a exceção apropriadamente no seu código real
         }
         return idContaCadastrada;
+    }
+
+    public Conta buscarContaPorUsuarioId(Long usuarioId) {
+        Conta conta = null;
+        String sql = "SELECT * FROM conta WHERE USUARIO_ID = ?";
+
+        try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
+
+            stmt.setLong(1, usuarioId);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    conta = mapearConta(rs);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return conta;
+    }
+
+    public Conta mapearConta(ResultSet rs) throws SQLException{
+        Long id = rs.getLong("id");
+        String nome = rs.getString("nome");
+        double saldo = rs.getDouble("saldo");
+        Long usuarioId = rs.getLong("usuario_id");
+
+        return new Conta(id, nome, saldo, usuarioId);
     }
 }

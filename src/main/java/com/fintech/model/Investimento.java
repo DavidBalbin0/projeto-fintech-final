@@ -62,5 +62,15 @@ public class Investimento implements Serializable {
 		return conta;
 	}
 
-
+	@Override
+	public String toString() {
+		return "Investimento{" +
+				"id=" + id +
+				", descricao='" + descricao + '\'' +
+				", saldo=" + saldo +
+				", meta=" + meta +
+				", conta=" + conta +
+				", vinculadoSaldoConta=" + vinculadoSaldoConta +
+				'}';
+	}
 }

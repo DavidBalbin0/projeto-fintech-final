@@ -47,9 +47,6 @@ public class CriaUsuarioServlet extends HttpServlet {
 
 		ValidadorUsuarioService validadorService = new ValidadorUsuarioService();
 
-
-
-
 		validadorService.validar(usuarioDto, erros);
 		if(!erros.isEmpty()){
 			request.setAttribute("erros", erros);

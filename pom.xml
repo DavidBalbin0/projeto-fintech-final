@@ -23,12 +23,12 @@
         <artifactId>javax.servlet-api</artifactId>
         <version>4.0.1</version>
     </dependency>
-      <dependency>
-          <groupId>jakarta.platform</groupId>
-          <artifactId>jakarta.jakartaee-api</artifactId>
-          <version>9.1.0</version>
-          <scope>provided</scope>
-      </dependency>
+<!--      <dependency>-->
+<!--          <groupId>jakarta.platform</groupId>-->
+<!--          <artifactId>jakarta.jakartaee-api</artifactId>-->
+<!--          <version>9.1.0</version>-->
+<!--          <scope>provided</scope>-->
+<!--      </dependency>-->
       <!-- https://mvnrepository.com/artifact/javax/javaee-api -->
       <dependency>
           <groupId>javax</groupId>
@@ -52,16 +52,16 @@
           <artifactId>flyway-core</artifactId>
           <version>7.14.0</version>
       </dependency>
-      <dependency>
-          <groupId>org.slf4j</groupId>
-          <artifactId>slf4j-api</artifactId>
-          <version>1.7.32</version> <!-- Verifique a versão mais recente -->
-      </dependency>
-      <dependency>
-          <groupId>ch.qos.logback</groupId>
-          <artifactId>logback-classic</artifactId>
-          <version>1.2.6</version> <!-- Verifique a versão mais recente -->
-      </dependency>
+<!--      <dependency>-->
+<!--          <groupId>org.slf4j</groupId>-->
+<!--          <artifactId>slf4j-api</artifactId>-->
+<!--          <version>1.7.32</version> &lt;!&ndash; Verifique a versão mais recente &ndash;&gt;-->
+<!--      </dependency>-->
+<!--      <dependency>-->
+<!--          <groupId>ch.qos.logback</groupId>-->
+<!--          <artifactId>logback-classic</artifactId>-->
+<!--          <version>1.2.6</version> &lt;!&ndash; Verifique a versão mais recente &ndash;&gt;-->
+<!--      </dependency>-->
 
 
   </dependencies>

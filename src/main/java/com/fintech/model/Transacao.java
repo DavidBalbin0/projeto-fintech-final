@@ -49,4 +49,16 @@ public abstract class Transacao {
 	public double getValor() {
 		return valor;
 	}
+
+	@Override
+	public String toString() {
+		return "Transacao{" +
+				"id=" + id +
+				", descricao='" + descricao + '\'' +
+				", categoria='" + categoria + '\'' +
+				", valor=" + valor +
+				", data=" + data +
+				", contaId=" + contaId +
+				'}';
+	}
 }

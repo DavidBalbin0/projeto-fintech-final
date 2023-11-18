@@ -55,7 +55,7 @@ public class DespesaDAO {
 
     public Long cadastra(DespesaDto despesaDto) {
         Long idDespesaCadastrada = null;
-        String sql = "{call inserir_despesa(?, ?, ?, ?, ?)}";
+        String sql = "{call inserir_despesa(?, ?, ?, ?, ?, ? )}";
 
         try (CallableStatement callableStatement = conexao.prepareCall(sql)) {
             callableStatement.setString(1, despesaDto.getDescricao());
@@ -78,6 +78,26 @@ public class DespesaDAO {
         }
 
         return idDespesaCadastrada;
+    }
+
+    public List<Despesa> buscarTodasAsDespesasPorContaId(Long idConta){
+        List despesas = new ArrayList<>();
+
+        String sql = "SELECT * FROM receita WHERE CONTA_ID = ?";
+
+        try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
+            stmt.setLong(1, idConta);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    Despesa despesa = mapearDespesa(rs);
+                    despesas.add(despesa);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(); // Tratar a exceção apropriadamente no seu código real
+        }
+        return despesas;
     }
 
     private Despesa mapearDespesa(ResultSet rs) throws SQLException {

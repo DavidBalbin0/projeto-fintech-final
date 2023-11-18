@@ -1,10 +1,8 @@
 package com.fintech.dao;
 import com.fintech.connection.ConnectionManager;
-import com.fintech.model.Investimento;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+
 public class OracleDAOFactory {
 
     static {
@@ -23,7 +21,7 @@ public class OracleDAOFactory {
         ConnectionManager.fecharConexao();
     }
 
-    public UsuarioDAO getUsuarioDAO() {
+    public UsuarioDAO pegaUsuarioDAO() {
         return new UsuarioDAO(pegarConexao());
     }
     // Adicione métodos para outros DAOs conforme necessário
@@ -38,5 +36,9 @@ public class OracleDAOFactory {
 
     public InvestimentoDAO pegaInvestimentoDao(){
         return new InvestimentoDAO(pegarConexao());
+    }
+
+    public DespesaDAO pegaDespesaDao(){
+        return new DespesaDAO(pegarConexao());
     }
 }

@@ -3,13 +3,14 @@ package com.fintech.dto;
 import java.time.LocalDateTime;
 
 public class DespesaDto {
-    private Long contaId;
+
     private String descricao;
     private double valor;
     private String categoria;
     private LocalDateTime data;
+    private Long contaId;
 
-    public DespesaDto(Long contaId, String descricao, double valor, String categoria, LocalDateTime data) {
+    public DespesaDto(String descricao, double valor, String categoria, LocalDateTime data, Long contaId) {
         this.valor = valor;
         this.contaId = contaId;
         this.descricao = descricao;

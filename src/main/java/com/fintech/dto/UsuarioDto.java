@@ -43,6 +43,9 @@ public class UsuarioDto {
 	public String getSenha() {
 		return senha;
 	}
-	
-	
+
+
+	public void setSenha(String senhaEncriptada) {
+		this.senha = senhaEncriptada;
+	}
 }

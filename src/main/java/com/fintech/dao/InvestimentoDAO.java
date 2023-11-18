@@ -58,7 +58,7 @@ public class InvestimentoDAO {
 
     public Long cadastrarInvestimento(InvestimentoDto investimentoDto) {
         Long idInvestimentoCadastrado = null;
-        String sql = "{call inserir_investimento(?, ?, ?, ?, ?, ?)}";
+        String sql = "{call inserir_investimento(?, ?, ?, ?, ?)}";
 
         try (CallableStatement callableStatement = conexao.prepareCall(sql)) {
 
@@ -66,19 +66,17 @@ public class InvestimentoDAO {
             callableStatement.setString(1, investimentoDto.getDescricao());
             callableStatement.setDouble(2, investimentoDto.getSaldo());
             callableStatement.setDouble(3, investimentoDto.getMeta());
-            callableStatement.setBoolean(4, investimentoDto.isVinculadoSaldoConta());
-            callableStatement.setLong(5, investimentoDto.getContaId());
-
-
+//            callableStatement.setBoolean(4, investimentoDto.isVinculadoSaldoConta());
+            callableStatement.setLong(4, investimentoDto.getContaId());
 
             // Registrar o parâmetro de saída para o ID
-            callableStatement.registerOutParameter(6, Types.NUMERIC);
+            callableStatement.registerOutParameter(5, Types.NUMERIC);
 
             // Executar a instrução SQL
             callableStatement.execute();
 
             // Obter o ID gerado
-            idInvestimentoCadastrado = callableStatement.getLong(6);
+            idInvestimentoCadastrado = callableStatement.getLong(5);
 
         } catch (SQLException e) {
             e.printStackTrace();  // Tratar a exceção apropriadamente no seu código real
@@ -94,7 +92,7 @@ public class InvestimentoDAO {
         double meta = rs.getDouble("meta");
         Long contaId = rs.getLong("conta_id");
         boolean vinculadoSaldoConta = rs.getBoolean("vinculado_saldo_conta");
-        double saldoInicial = rs.getDouble("saldo_inicial");
+        double saldoInicial = rs.getDouble("saldo");
 
         OracleDAOFactory daoFactory = new OracleDAOFactory();
         Conta conta = daoFactory.pegaContaDao().buscaPorId(contaId);
