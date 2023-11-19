@@ -21,10 +21,10 @@
 		<nav class="nav-bar">
 
 			<div class="tool-left">
-				<img class="icon-medium" src="/img/icone-logo.svg" alt="">
+				<img class="icon-medium" src="${pageContext.request.contextPath}/imagens/icone-logo.svg" alt="">
 				<div class="ms-10">
 					<h3>Olá,</h3>
-					<h3>Fernando</h3>
+					<h3>{nome}</h3>
 				</div>
 			</div>
 
@@ -41,7 +41,7 @@
 
 			<div class="botao-mobile-menu">
 				<button id="mostrar-menu">
-					<img src="../img/icone-mobile-verde.svg" alt="">
+					<img src="${pageContext.request.contextPath}/imagens/icone-mobile-verde.svg" alt="">
 				</button>
 			</div>
 
@@ -62,6 +62,18 @@
 	<div class="flex-center">
 		<div
 			class="card-container flex-column-center w-80 mt-40 border-radius-10 py-20 box-shadow bg-color-branco">
+
+			<form action="" method="post" class="flex-column-center">
+				<input type="text" name="descricao" placeholder="Descrição" required/>
+				<span class="error">${erros.descricao}</span>
+				<input type="text" name="valor" placeholder="Valor" required/>
+				<span class="error">${erros.valor}</span>
+				<input type="date" name="data" placeholder="Data" required/>
+				<span class="error">${erros.data}</span>
+
+				<input class="button" type="submit" value="Adicionar Receita"/>
+			</form>
+
 			<h3 class="saldo fw-bold mb-10">Despesas cadastradas</h3>
 
 			<table>
@@ -74,7 +86,7 @@
 				<c:forEach var="despesa" items="${despesas}">
 					<tr>
 						<td>${despesa.descricao}</td>
-						<td class="despesa">${despesa.valor}</td>
+						<td class="gasto">${despesa.valor}</td>
 						<td>${despesa.data}</td>
 					</tr>
 
@@ -95,6 +107,7 @@
 		<div class="mt-40 flex-column-center">
 			<button class="button">Cadastrar novo</button>
 		</div>
+	</div>
 
 		<script>
 			document.getElementById("mostrar-menu").addEventListener('click',

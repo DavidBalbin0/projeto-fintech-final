@@ -1,15 +1,12 @@
 package com.fintech.service;
 
-import com.fintech.dao.ContaDAO;
-import com.fintech.dao.DespesaDAO;
-import com.fintech.dao.OracleDAOFactory;
-import com.fintech.dao.ReceitaDAO;
+import com.fintech.dao.*;
 import com.fintech.dto.ContaDto;
 import com.fintech.dto.DespesaDto;
+import com.fintech.dto.ObjetivoDto;
 import com.fintech.dto.ReceitaDto;
 import com.fintech.model.*;
 
-import javax.validation.constraints.Null;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -20,6 +17,7 @@ public class ContaService {
     ContaDAO contaDAO = daoFactory.pegaContaDao();
     ReceitaDAO receitaDAO = daoFactory.pegaReceitaDao();
     DespesaDAO despesaDAO = daoFactory.pegaDespesaDao();
+    ObjetivoDAO objetivoDAO = daoFactory.pegaObjetivoDAO();
     public Conta criarConta(String nomeConta, double saldoInicial, Long usuarioId) {
         ContaDto contaDto = new ContaDto(nomeConta, saldoInicial, usuarioId);
         Long idConta = contaDAO.cadastrar(contaDto);
@@ -100,4 +98,31 @@ public class ContaService {
     }
 
 
+    public List<Objetivo> pegarObjetivos(Usuario usuario) {
+        Conta conta = buscarContaPorUsuarioId(usuario.getId());
+        List<Objetivo> objetivos = buscarObjetivosPorContaId(conta.getId());
+        Collections.sort(objetivos);
+        return objetivos;
+    }
+
+    public List<Objetivo> buscarObjetivosPorContaId(Long id){
+        return objetivoDAO.buscaPorContaId(id);
+    }
+
+    public Objetivo cadastrarObjetivo(ObjetivoDto objetivoDto) {
+        Objetivo objetivo = null;
+        try{
+            Long id = objetivoDAO.cadastra(objetivoDto);
+            objetivo = objetivoDAO.buscaPorId(id);
+        } catch (NullPointerException e){
+            System.out.println("erro ao cadastrar despesa!");
+        }
+        return objetivo;
+    }
+
+    public void adiconarSaldoAoObjetivo(Long id, double saldo) {
+        Objetivo objetivo = objetivoDAO.buscaPorId(id);
+        objetivo.adicionarSaldo(saldo);
+        objetivoDAO.atualizarObjetivo(objetivo);
+    }
 }

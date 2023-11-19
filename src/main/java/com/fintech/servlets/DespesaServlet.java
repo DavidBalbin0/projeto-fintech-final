@@ -39,6 +39,7 @@ public class DespesaServlet extends HttpServlet {
         List<Despesa> despesas =  contaService.pegarDespesas(usuario);
 
         request.setAttribute("despesas", despesas);
+        request.setAttribute("nome", usuario.getNome());
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/despesas.jsp");
         dispatcher.forward(request, response);

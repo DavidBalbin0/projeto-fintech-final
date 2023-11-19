@@ -5,15 +5,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<link rel="stylesheet" type="text/css"
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/css/pagina1.css">
-<link rel="stylesheet" type="text/css"
+	<link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/css/nav.css">
-<link rel="stylesheet" type="text/css"
+	<link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/css/reset.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap" rel="stylesheet">
 
-<title>Fintech</title>
+	<title>Fintech</title>
 </head>
 
 <body class="bg-verde-claro">
@@ -21,10 +24,10 @@
 		<nav class="nav-bar">
 
 			<div class="tool-left">
-				<img class="icon-medium" src="/img/icone-logo.svg" alt="">
+				<img class="icon-medium" src="${pageContext.request.contextPath}/imagens/icone-logo.svg" alt="">
 				<div class="ms-10">
 					<h3>Olá,</h3>
-					<h3>Fernando</h3>
+					<h3>${nome}</h3>
 				</div>
 			</div>
 
@@ -40,7 +43,7 @@
 
 			<div class="botao-mobile-menu">
 				<button id="mostrar-menu">
-					<img src="../img/icone-mobile-verde.svg" alt="">
+					<img src="${pageContext.request.contextPath}/imagens/icone-mobile-verde.svg" alt="">
 				</button>
 			</div>
 

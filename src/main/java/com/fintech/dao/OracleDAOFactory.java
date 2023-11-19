@@ -32,4 +32,5 @@ public class OracleDAOFactory {
     public DespesaDAO pegaDespesaDao(){
         return new DespesaDAO(pegarConexao());
     }
+    public ObjetivoDAO pegaObjetivoDAO(){return new ObjetivoDAO(pegarConexao());}
 }

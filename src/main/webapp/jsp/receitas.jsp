@@ -21,7 +21,7 @@
 		<nav class="nav-bar">
 
 			<div class="tool-left">
-				<img class="icon-medium" src="/img/icone-logo.svg" alt="">
+				<img class="icon-medium" src="${pageContext.request.contextPath}/imagens/icone-logo.svg" alt="">
 				<div class="ms-10">
 					<h3>Olá,</h3>
 					<h3>${nome}</h3>
@@ -40,7 +40,7 @@
 
 			<div class="botao-mobile-menu">
 				<button id="mostrar-menu">
-					<img src="../img/icone-mobile-verde.svg" alt="">
+					<img src="${pageContext.request.contextPath}/imagens/icone-mobile-verde.svg" alt="">
 				</button>
 			</div>
 
@@ -59,19 +59,20 @@
 	</header>
 
 	<div class="flex-center">
-		<div
-			class="card-container flex-column-center w-80 mt-40 border-radius-10 py-20 box-shadow bg-color-branco">
+		<div class="card-container flex-column-center w-80 mt-40 border-radius-10 py-20 box-shadow bg-color-branco">
 
-			<form action="" method="post" class="flex-column-center">
-				<input type="text" name="descricao" placeholder="Descrição" required/>
-				<span class="error">${erros.descricao}</span>
-				<input type="text" name="valor" placeholder="Valor" required/>
-				<span class="error">${erros.valor}</span>
-				<input type="date" name="data" placeholder="Data" required/>
-				<span class="error">${erros.data}</span>
+					<form action="" method="post" class="flex-column-center">
+						<input type="text" name="descricao" placeholder="Descrição" required/>
+						<span class="error">${erros.descricao}</span>
+						<input type="text" name="valor" placeholder="Valor" required/>
+						<span class="error">${erros.valor}</span>
+						<input type="date" name="data" placeholder="Data" required/>
+						<span class="error">${erros.data}</span>
 
-				<input class="button" type="submit" value="Adicionar Receita"/>
-			</form>
+						<input class="button" type="submit" value="Adicionar Receita"/>
+					</form>
+				</div>
+			</div>
 
 
 

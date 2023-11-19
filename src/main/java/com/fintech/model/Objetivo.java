@@ -1,53 +1,47 @@
 package com.fintech.model;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
-public class Objetivo implements Serializable {
+public class Objetivo implements Serializable, Comparable<Objetivo> {
 	
 	private static final long serialVersionUID = 1L;
 	private Long id;
 	private String descricao;
 	private double saldo;
-	private LocalDateTime dataInicio;
-	private LocalDateTime dataFinal;
-	private double objetivo;
-	private Conta conta;
-	private boolean vinculadoSaldoConta = true;
-	
-	public Objetivo(String descricao, LocalDateTime dataInicio, LocalDateTime dataFinal, double objetivo, Conta conta, double saldoInicial, boolean vinculadoSaldoConta) {
-		this.dataInicio = dataInicio;
-		this.dataFinal = dataFinal;
-		this.vinculadoSaldoConta = vinculadoSaldoConta;
-		this.descricao = descricao;
-		this.objetivo = objetivo;
-		this.conta = conta;
-		depositarValor(saldoInicial);
-	}
+	private LocalDate dataInicio;
+	private LocalDate dataFinal;
+	private double meta;
+	private double progresso;
+	private Long contaId;
 
-	public Objetivo(Long id, String descricao, LocalDateTime dataInicio, LocalDateTime dataFinal, double objetivo, Conta conta, double saldoInicial, boolean vinculadoSaldoConta) {
+	public Objetivo(Long id, String descricao, double saldo, LocalDate dataInicio, LocalDate dataFinal, double meta, double progresso, Long contaId) {
 		this.id = id;
+		this.descricao = descricao;
+		this.saldo = saldo;
 		this.dataInicio = dataInicio;
 		this.dataFinal = dataFinal;
-		this.vinculadoSaldoConta = vinculadoSaldoConta;
+		this.meta = meta;
+		this.progresso = calcularProgressao();
+		this.contaId = contaId;
+	}
+
+	public Objetivo(String descricao, double saldo, LocalDate dataInicio, LocalDate dataFinal, double meta, Long contaId) {
 		this.descricao = descricao;
-		this.objetivo = objetivo;
-		this.conta = conta;
-		depositarValor(saldoInicial);
+		this.saldo = saldo;
+		this.dataInicio = dataInicio;
+		this.dataFinal = dataFinal;
+		this.meta = meta;
+		this.progresso = calcularProgressao();
+		this.contaId = contaId;
 	}
 
-	public void depositarValor(double valor){
-		if(vinculadoSaldoConta){
-			conta.adicionarValor(valor);
+	private double calcularProgressao() {
+		if (meta != 0) {
+			return (saldo / meta) * 100.0;
+		} else {
+			return 0.0; // lidar com o caso em que a meta é zero para evitar divisão por zero
 		}
-		saldo += valor;
-	}
-
-	public void retirarValor (double valor){
-		if(vinculadoSaldoConta){
-			conta.adicionarValor(valor);
-		}
-		saldo -= valor;
 	}
 
 	public Long getId() {
@@ -58,23 +52,36 @@ public class Objetivo implements Serializable {
 		return descricao;
 	}
 
-	public double getObjetivo() {
-		return objetivo;
+	public double getSaldo() {
+		return saldo;
 	}
 
-	public Conta getConta() {
-		return conta;
+	public LocalDate getDataInicio() {
+		return dataInicio;
+	}
+
+	public LocalDate getDataFinal() {
+		return dataFinal;
+	}
+
+	public double getMeta() {
+		return meta;
+	}
+
+	public double getProgresso() {
+		return progresso;
+	}
+
+	public Long getContaId() {
+		return contaId;
 	}
 
 	@Override
-	public String toString() {
-		return "Investimento{" +
-				"id=" + id +
-				", descricao='" + descricao + '\'' +
-				", saldo=" + saldo +
-				", meta=" + objetivo +
-				", conta=" + conta +
-				", vinculadoSaldoConta=" + vinculadoSaldoConta +
-				'}';
+	public int compareTo(Objetivo outroObjetivo) {
+		return this.dataFinal.compareTo(outroObjetivo.dataFinal);
+	}
+
+	public void adicionarSaldo(double saldo) {
+		this.saldo += saldo;
 	}
 }

@@ -62,8 +62,13 @@ public class UsuarioService {
     }
 
 
+    public void deslogarUsuario(Usuario usuario){
 
+    }
 
+    public void exclurUsuario(Usuario usuario){
+
+    }
 
 
 

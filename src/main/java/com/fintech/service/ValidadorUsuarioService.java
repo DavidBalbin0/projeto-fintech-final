@@ -7,10 +7,7 @@ import java.util.List;
 import com.fintech.dto.UsuarioDto;
 import com.fintech.validacao.Validador;
 
-import com.fintech.validacao.usuario.EmailUsuarioValidador;
-import com.fintech.validacao.usuario.NomeUsuarioValidador;
-import com.fintech.validacao.usuario.SenhaUsuarioValidador;
-import com.fintech.validacao.usuario.SexoUsuarioValidador;
+import com.fintech.validacao.usuario.*;
 
 
 public class ValidadorUsuarioService {
@@ -21,6 +18,7 @@ public class ValidadorUsuarioService {
 		validadores.add(new EmailUsuarioValidador());
 		validadores.add(new SenhaUsuarioValidador());
 		validadores.add(new SexoUsuarioValidador());
+		validadores.add(new DataNascValidador());
 	}
 
 	public void validar(UsuarioDto usuarioDto, HashMap<String, String> erros) {

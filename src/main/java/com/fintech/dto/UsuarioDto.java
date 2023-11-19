@@ -19,6 +19,7 @@ public class UsuarioDto {
 		this.senha = senha;
 	}
 
+
 	public String getNome() {
 		return nome;
 	}

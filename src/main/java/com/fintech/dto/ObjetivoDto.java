@@ -1,23 +1,24 @@
 package com.fintech.dto;
 
-import com.fintech.model.Conta;
-
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public class ObjetivoDto {
     private String descricao;
     private double saldo;
-
+    private LocalDate dataInicio;
+    private LocalDate dataFinal;
     private double meta;
-    private boolean vinculadoSaldoConta = true;
+    private double progresso;
     private Long contaId;
 
-    public ObjetivoDto(String descricao, double saldo, double meta, boolean vinculadoSaldoConta, Long contaId) {
-        this.meta = meta;
-        this.contaId = contaId;
+    public ObjetivoDto(String descricao, double saldo, LocalDate dataInicio, LocalDate dataFinal, double meta, Long contaId) {
         this.descricao = descricao;
         this.saldo = saldo;
-        this.vinculadoSaldoConta = vinculadoSaldoConta;
+        this.dataInicio = dataInicio;
+        this.dataFinal = dataFinal;
+        this.meta = meta;
+        this.progresso = calcularProgressao();
+        this.contaId = contaId;
     }
 
     public Long getContaId() {
@@ -36,7 +37,23 @@ public class ObjetivoDto {
         return meta;
     }
 
-    public boolean isVinculadoSaldoConta() {
-        return vinculadoSaldoConta;
+    public LocalDate getDataInicio() {
+        return dataInicio;
+    }
+
+    public LocalDate getDataFinal() {
+        return dataFinal;
+    }
+
+    public double getProgresso() {
+        return progresso;
+    }
+
+    private double calcularProgressao() {
+        if (meta != 0) {
+            return (saldo / meta) * 100.0;
+        } else {
+            return 0.0; // lidar com o caso em que a meta é zero para evitar divisão por zero
+        }
     }
 }

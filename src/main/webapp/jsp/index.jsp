@@ -12,7 +12,10 @@
 	href="${pageContext.request.contextPath}/css/nav.css">
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/css/reset.css">
-	
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap" rel="stylesheet">
+
 <title>Home</title>
 </head>
 <body>
@@ -22,7 +25,7 @@
             <h1 class="text-center mt-60 fw-bold color-verde-escuro fw-bold">Chegou o momento de revolucionar suas finanças.</h1>
         </div>
         <div class="flex-column-center mt-40">
-            <img src="/img/icone-logo.svg" id="img-logo-principal" alt="">
+            <img src="${pageContext.request.contextPath}/imagens/icone-logo.svg" id="img-logo-principal" alt="">
             <div class="flex font-title">
                 <h1 class="title">FINTECH</h1>
             </div>
@@ -37,13 +40,19 @@
             <p class="text-center color-verde-escuro w-80 mt-10 fw-bold">Podemos ajudá-lo a seguir em frente nessa jornada.</p>
         </div>
         <div class="flex-column-center mt-40 w-60">
-            <button class="button">Começar</button>
+            <button class="button" onclick="redirecionarParaServlet()" >Começar</button>
             <div class="mt-10">
-                <a href="javascriptVoid(0)" class="link text-verde fw-bold">Já sou cadastrado</a>
+                <a href="${pageContext.request.contextPath}/login" class="link text-verde fw-bold">Já sou cadastrado</a>
             </div>
         </div>
     </div>
 
+    <script>
+        function redirecionarParaServlet() {
+            // Use a variável definida para o contexto do caminho
+            window.location.href = "${pageContext.request.contextPath}/cadastro";
+        }
+    </script>
 </body>
 </body>
 </html>

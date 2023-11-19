@@ -19,7 +19,7 @@
 <body>
 	 <div class="container flex-column-center mt-40">
         <div class="flex-column-center">
-            <img src="/img/icone-logo.svg" id="img-logo-principal" alt="">
+            <img src="${pageContext.request.contextPath}/imagens/icone-logo.svg" id="img-logo-principal" alt="">
             <div class="flex font-title">
                 <h1 class="title">FINTECH</h1>
             </div>
@@ -38,17 +38,17 @@
 
                 <div class="mt-10 w-100 flex-column-center">
                     <button type="submit" class="button">Entrar</button>
-                    <p class="fs-xsmall mt-10">Não tem conta? <a href="/cadastro" class="fw-bold link color-verde-escuro">Registre-se </a></p>
+                    <p class="fs-xsmall mt-10">Não tem conta? <a href="${pageContext.request.contextPath}/cadastro" class="fw-bold link color-verde-escuro">Registre-se </a></p>
                 </div>
                 
 
                 <div class="flex-column-center w-100">
                     <button class="button mt-40 bg-color-azul flex-align-center flex-center">
-                        <img src="/img/facebook.png" alt="" class="icon-small">
+                        <img src="${pageContext.request.contextPath}/imagens/facebook.png" alt="" class="icon-small">
                         Login com Facebook
                     </button>
                     <button class="button mt-10 bg-color-branco flex-align-center color-black flex-center">
-                        <img src="/img/google.png" alt="" class="icon-small">Login com Google</button>
+                        <img src="${pageContext.request.contextPath}/imagens/google.png" alt="" class="icon-small">Login com Google</button>
                 </div>
             </form>
         </div>

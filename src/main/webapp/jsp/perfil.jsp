@@ -21,7 +21,7 @@
     <nav class="nav-bar">
 
       <div class="tool-left">
-        <img class="icon-medium" src="/img/icone-logo.svg" alt="">
+        <img class="icon-medium" src="${pageContext.request.contextPath}/imagens/icone-logo.svg" alt="">
         <div class="ms-10">
           <h3>Olá, </h3>
           <h3>Fernando</h3>
@@ -40,7 +40,7 @@
       </ul>
 
       <div class="botao-mobile-menu">
-        <button id="mostrar-menu"><img src="../img/icone-mobile-verde.svg" alt=""></button>
+        <button id="mostrar-menu"><img src="${pageContext.request.contextPath}/imagens/icone-mobile-verde.svg" alt=""></button>
       </div>
 
 
@@ -64,7 +64,7 @@
 
         </div>
         <div class="flex-column-center mt-10">
-          <img src="/img/foto-user-2.png" alt="" class="foto-user" />
+          <img src="${pageContext.request.contextPath}/imagens/foto-user-2.png" alt="" class="foto-user" />
 
           <div class="dados text-center">
             <div class="item mb-10 mt-40">
