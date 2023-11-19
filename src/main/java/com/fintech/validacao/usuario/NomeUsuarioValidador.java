@@ -21,7 +21,7 @@ public class NomeUsuarioValidador implements Validador<UsuarioDto> {
 		}
 	}
 	private boolean isNomeValido(String nome) {
-		String regex = "^[a-zA-Z]+$";
+		String regex = "^[a-zA-Z ]+$";
 		Pattern pattern = Pattern.compile(regex);
 		return pattern.matcher(nome).matches();
 	}

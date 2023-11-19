@@ -1,21 +1,24 @@
 package com.fintech.dto;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class DespesaDto {
 
     private String descricao;
     private double valor;
-    private String categoria;
-    private LocalDateTime data;
+    private LocalDate data;
     private Long contaId;
 
-    public DespesaDto(String descricao, double valor, String categoria, LocalDateTime data, Long contaId) {
-        this.valor = valor;
+    public DespesaDto(String descricao, double valor,  LocalDate data, Long contaId) {
+        this.valor = negativaValor(valor);
         this.contaId = contaId;
         this.descricao = descricao;
-        this.categoria = categoria;
         this.data = data;
+    }
+    private double negativaValor(double valorInserido){
+        double valorNormalizado = Math.abs(valorInserido);
+        return -Math.abs(valorNormalizado);
     }
 
     public Long getContaId() {
@@ -26,15 +29,13 @@ public class DespesaDto {
         return descricao;
     }
 
-    public String getCategoria() {
-        return categoria;
-    }
 
-    public LocalDateTime getData() {
+    public LocalDate getData() {
         return data;
     }
 
     public double getValor() {
         return valor;
     }
+
 }

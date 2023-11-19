@@ -16,10 +16,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import java.io.IOException;
 import java.io.InputStream;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.HashMap;
 
 
-@MultipartConfig
 public class CriaUsuarioServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -33,16 +36,23 @@ public class CriaUsuarioServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String nome = request.getParameter("nome");
-		Part fotoPart = request.getPart("foto");
-		String dataNasc = request.getParameter("dataNasc");
+		String dataNascString = request.getParameter("dataNasc");
 		String sexo = request.getParameter("sexo");
 		String email = request.getParameter("email");
 		String senha = request.getParameter("senha");
+		LocalDate dataNasc;
+		try {
+			DateTimeFormatter formatador = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+			dataNasc = LocalDate.parse(dataNascString, formatador);
+		}catch (DateTimeParseException e){
+			dataNasc = LocalDate.now();
+		}
 
-		InputStream fotoInputStream = fotoPart.getInputStream();
-		byte[] fotoBytes = fotoInputStream.readAllBytes();
+		UsuarioDto usuarioDto = new UsuarioDto(nome, dataNasc, sexo, email, senha);
+		//usuariodto
+		//usuario
+		//todos os metodos que quebrarem
 
-		UsuarioDto usuarioDto = new UsuarioDto(fotoBytes, nome, null, sexo, email, senha);
 		HashMap<String, String> erros = new HashMap<String, String>();
 
 		ValidadorUsuarioService validadorService = new ValidadorUsuarioService();
@@ -56,7 +66,7 @@ public class CriaUsuarioServlet extends HttpServlet {
 			UsuarioService usuarioService = new UsuarioService();
 			usuarioService.cadastrar(usuarioDto);
 
-			response.sendRedirect(request.getContextPath() + "/jsp/login.jsp");
+			response.sendRedirect(request.getContextPath() + "/login");
 		}
 
 

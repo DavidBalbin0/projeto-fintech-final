@@ -5,6 +5,7 @@ import org.mindrot.jbcrypt.BCrypt;
 
 import java.io.Serializable;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -13,15 +14,13 @@ public class Usuario implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private Long id;
-	private byte[] foto;
 	private String nome;
-	private LocalDateTime dataNasc;
+	private LocalDate dataNasc;
 	private Sexo sexo;
 	private String email;
 	private String senha;
 
-	public Usuario(byte[] foto, String nome, LocalDateTime dataNasc, Sexo sexo, String email, String senhaSimples) {
-		this.foto = foto;
+	public Usuario(String nome, LocalDate dataNasc, Sexo sexo, String email, String senhaSimples) {
 		this.nome = nome;
 		this.dataNasc = dataNasc;
 		this.sexo = sexo;
@@ -29,9 +28,8 @@ public class Usuario implements Serializable{
 		this.senha = senhaSimples;
 	}
 
-	public Usuario(Long id, byte[] foto, String nome, LocalDateTime dataNasc, Sexo sexo, String email, String senhaSimples) {
+	public Usuario(Long id, String nome, LocalDate dataNasc, Sexo sexo, String email, String senhaSimples) {
 		this.id = id;
-		this.foto = foto;
 		this.nome = nome;
 		this.dataNasc = dataNasc;
 		this.sexo = sexo;
@@ -49,15 +47,13 @@ public class Usuario implements Serializable{
 	}
 
 
-	public byte[] getFoto() {
-		return foto;
-	}
+
 
 	public String getNome() {
 		return nome;
 	}
 
-	public LocalDateTime getDataNasc() {
+	public LocalDate getDataNasc() {
 		return dataNasc;
 	}
 
@@ -77,7 +73,7 @@ public class Usuario implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Usuario [id=" + id + ", foto=" + foto + ", nome=" + nome + ", dataNasc=" + dataNasc + ", sexo=" + sexo
+		return "Usuario [id=" + id + ", nome=" + nome + ", dataNasc=" + dataNasc + ", sexo=" + sexo
 				+ ", email=" + email + " senha= " + senha + "]";
 	}
 }

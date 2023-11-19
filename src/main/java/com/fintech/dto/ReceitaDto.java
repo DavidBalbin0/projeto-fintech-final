@@ -1,23 +1,26 @@
 package com.fintech.dto;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class ReceitaDto {
 
     private double valor;
     private String descricao;
-    private String categoria;
-    private LocalDateTime data;
+    private LocalDate data;
     private final Long contaId;
 
-    public ReceitaDto (String descricao, double valor,  String categoria, LocalDateTime data, Long contaId) {
+    public ReceitaDto (String descricao, double valor, LocalDate data, Long contaId) {
 
-        this.valor = valor;
+        this.valor = normalizaValor(valor);
         this.descricao = descricao;
-        this.categoria = categoria;
         this.data = data;
         this.contaId = contaId;
 
+    }
+
+    private double normalizaValor(double valorInserido){
+        return Math.abs(valorInserido);
     }
 
     public double getValor() {
@@ -28,11 +31,8 @@ public class ReceitaDto {
         return descricao;
     }
 
-    public String getCategoria() {
-        return categoria;
-    }
 
-    public LocalDateTime getData() {
+    public LocalDate getData() {
         return data;
     }
 

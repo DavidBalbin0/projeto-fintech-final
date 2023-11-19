@@ -19,22 +19,26 @@ public class ConnectionManager {
             try {
                 Class.forName("oracle.jdbc.driver.OracleDriver");
                 connection = DriverManager.getConnection(URL, USER, PASSWORD);
-            } catch (ClassNotFoundException | SQLException e) {
+            } catch (ClassNotFoundException e) {
                 e.printStackTrace();
+                throw new RuntimeException("Driver JDBC do Oracle não encontrado", e);
+            } catch (SQLException e) {
+                e.printStackTrace();
+                throw new RuntimeException("Erro ao conectar ao banco de dados", e);
             }
         }
         return connection;
     }
 
     public static void fecharConexao() {
-        if (connection != null) {
-            try {
+        try {
+            if (connection != null) {
                 connection.close();
-            } catch (SQLException e) {
-                e.printStackTrace(); 
-            } finally {
-                connection = null;
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            connection = null;
         }
     }
 }

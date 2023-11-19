@@ -4,15 +4,6 @@ import com.fintech.connection.ConnectionManager;
 import java.sql.Connection;
 
 public class OracleDAOFactory {
-
-    static {
-        try {
-            Class.forName("oracle.jdbc.driver.OracleDriver");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-
     public Connection pegarConexao() {
         return ConnectionManager.pegarConexao();
     }
@@ -34,9 +25,9 @@ public class OracleDAOFactory {
         return new ReceitaDAO(pegarConexao());
     }
 
-    public InvestimentoDAO pegaInvestimentoDao(){
-        return new InvestimentoDAO(pegarConexao());
-    }
+//    public ObjetivoDAO pegaObjetivoDao(){
+//        return new ObjetivoDAO(pegarConexao());
+//    }
 
     public DespesaDAO pegaDespesaDao(){
         return new DespesaDAO(pegarConexao());

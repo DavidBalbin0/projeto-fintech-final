@@ -1,18 +1,17 @@
 package com.fintech.dto;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class UsuarioDto {
-	private byte[] foto;
 	private String nome;
-	private LocalDateTime dataNasc;
+	private LocalDate dataNasc;
 	private String sexo;
 	private String email;
 	private String senha;
 	
-	public UsuarioDto(byte[] foto, String nome, LocalDateTime dataNasc, String sexo, String email, String senha) {
+	public UsuarioDto(String nome, LocalDate dataNasc, String sexo, String email, String senha) {
 		super();
-		this.foto = foto;
 		this.nome = nome;
 		this.dataNasc = dataNasc;
 		this.sexo = sexo;
@@ -20,15 +19,11 @@ public class UsuarioDto {
 		this.senha = senha;
 	}
 
-	public byte[] getFoto() {
-		return foto;
-	}
-
 	public String getNome() {
 		return nome;
 	}
 
-	public LocalDateTime getDataNasc() {
+	public LocalDate getDataNasc() {
 		return dataNasc;
 	}
 
@@ -45,7 +40,20 @@ public class UsuarioDto {
 	}
 
 
+
+
 	public void setSenha(String senhaEncriptada) {
 		this.senha = senhaEncriptada;
+	}
+
+	@Override
+	public String toString() {
+		return "UsuarioDto{" +
+				"nome='" + nome + '\'' +
+				", dataNasc=" + dataNasc +
+				", sexo='" + sexo + '\'' +
+				", email='" + email + '\'' +
+				", senha='" + senha + '\'' +
+				'}';
 	}
 }

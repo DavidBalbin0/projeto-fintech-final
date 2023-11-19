@@ -1,7 +1,7 @@
 package com.fintech.teste;
 public enum Sexo {
     MASCULINO,
-    FEMIMINO,
+    FEMININO,
     OUTRO
 }
 

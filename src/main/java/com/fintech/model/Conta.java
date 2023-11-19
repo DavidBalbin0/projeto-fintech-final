@@ -31,14 +31,14 @@ public class Conta implements Serializable {
 		return serialVersionUID;
 	}
 
-	public void sacarValor(double valor){
-		if (valor < saldo) {
-			saldo -= valor;
+	public void adicionarValor(double valor) {
+		if (valor < 0){
+			if (valor <= saldo) {
+				saldo -= valor;
+			}
+		} else {
+			saldo += valor;
 		}
-	}
-
-	public void depositarValor(double valor){
-		saldo += valor;
 	}
 
 	public Long getId() { return id; }

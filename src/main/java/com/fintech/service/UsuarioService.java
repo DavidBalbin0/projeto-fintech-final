@@ -7,20 +7,28 @@ import com.fintech.model.*;
 import org.mindrot.jbcrypt.BCrypt;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class UsuarioService {
 
     OracleDAOFactory daoFactory = new OracleDAOFactory();
+    ContaService contaService = new ContaService();
     UsuarioDAO usuarioDAO = daoFactory.pegaUsuarioDAO();
-    ContaDAO contaDAO = daoFactory.pegaContaDao();
-    ReceitaDAO receitaDAO = daoFactory.pegaReceitaDao();
-    DespesaDAO depesaDAO = daoFactory.pegaDespesaDao();
 
     public Long cadastrar(UsuarioDto usuarioDtoValidado) {
-        String senhaEncriptada = encriptarSenha(usuarioDtoValidado.getSenha());
-        usuarioDtoValidado.setSenha(senhaEncriptada);
-        return usuarioDAO.cadastrarUsuario(usuarioDtoValidado);
+//        String senhaEncriptada = encriptarSenha(usuarioDtoValidado.getSenha());
+//        usuarioDtoValidado.setSenha(senhaEncriptada);
+        System.out.println(" printando usuario no metodo cadastrar do service " + usuarioDtoValidado);
+        try {
+            Long idUsuario =  usuarioDAO.cadastrarUsuario(usuarioDtoValidado);
+            contaService.criarConta("minha conta", 0.0, idUsuario);
+            return idUsuario;
+
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public Usuario buscarPorId(Long id ){
@@ -45,20 +53,19 @@ public class UsuarioService {
         String salt = BCrypt.gensalt(12);
         return BCrypt.hashpw(senhaSimples, salt);
     }
-    public  boolean verificarSenha(String senhaSimples, String hashSenha) {
-        return BCrypt.checkpw(senhaSimples, hashSenha);
+//    public  boolean verificarSenha(String senhaSimples, String hashSenha) {
+//        return BCrypt.checkpw(senhaSimples, hashSenha);
+//    }
+
+    public boolean verificarSenha(String senhaInserida, String senhaSalva){
+        return  senhaInserida.equals(senhaSalva);
     }
 
-    public List<Transacao> pegarAndOrdenarTransacoesRecente(Usuario usuario) {
-        Conta conta = contaDAO.buscarContaPorUsuarioId(usuario.getId());
-        List<Transacao> transacaos = new ArrayList<>();
 
-        List<Receita> receitas = receitaDAO.buscarTodasAsReceitasPorContaId(conta.getId());
-        List<Despesa> despesas = depesaDAO.buscarTodasAsDespesasPorContaId(conta.getId());
-        //buscar receitas e despespesas *dos ultimos 5 dias* dessa conta do usuario
-        //atribuir dentro de uma lista de transacoes
-        //ordenar essa lista pela data
-        // retornar lista
-    }
+
+
+
+
+
 }
 

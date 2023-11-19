@@ -5,7 +5,9 @@ import com.fintech.model.Usuario;
 import com.fintech.teste.Sexo;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 
 public class UsuarioDAO {
 
@@ -34,25 +36,27 @@ public class UsuarioDAO {
     }
 
     public Long cadastrarUsuario(UsuarioDto usuarioDto) {
+        System.out.println("chegou no dao");
         Long idUsuarioCadastrado = null;
-        String sql = "{call inserir_usuario(?, ?, ?, ?, ?, ?, ?)}";
+        String sql = "{call inserir_usuario(?, ?, ?, ?, ?, ?)}";
         try (CallableStatement callableStatement = conexao.prepareCall(sql)) {
 
             // Configurar os parâmetros da instrução SQL
-            callableStatement.setBytes(1, usuarioDto.getFoto());
-            callableStatement.setString(2, usuarioDto.getNome());
-            callableStatement.setTimestamp(3, Timestamp.valueOf(usuarioDto.getDataNasc()));
-            callableStatement.setString(4, usuarioDto.getSexo());
-            callableStatement.setString(5, usuarioDto.getEmail());
-            callableStatement.setString(6, usuarioDto.getSenha());
+            callableStatement.setString(1, usuarioDto.getNome());
+            callableStatement.setTimestamp(2, Timestamp.valueOf(usuarioDto.getDataNasc().atStartOfDay(ZoneId.systemDefault()).toLocalDateTime()));
+            callableStatement.setString(3, usuarioDto.getSexo());
+            callableStatement.setString(4, usuarioDto.getEmail());
+            callableStatement.setString(5, usuarioDto.getSenha());
             // Registrar o parâmetro de saída para o ID
-            callableStatement.registerOutParameter(7, Types.NUMERIC);
+            callableStatement.registerOutParameter(6, Types.NUMERIC);
 
             // Executar a instrução SQL
-            callableStatement.execute();
+            boolean executou = callableStatement.execute();
+            System.out.println("executou? " + executou);
 
             // Obter o ID gerado
-            idUsuarioCadastrado = callableStatement.getLong(7);
+            idUsuarioCadastrado = callableStatement.getLong(6);
+            System.out.println(idUsuarioCadastrado);
 
         } catch (SQLException e) {
             e.printStackTrace();  // Tratar a exceção apropriadamente no seu código real
@@ -81,15 +85,14 @@ public class UsuarioDAO {
 
     public Usuario mapearUsuario(ResultSet rs) throws SQLException{
         Long id = rs.getLong("id");
-        byte[] foto = rs.getBytes("foto");
         String nome = rs.getString("Nome");
         Timestamp timestamp = rs.getTimestamp("data_nasc");
-        LocalDateTime dataNasc = timestamp.toLocalDateTime();
+        LocalDate dataNasc = timestamp.toLocalDateTime().toLocalDate();
         String sexoString = rs.getString("sexo");
         Sexo sexo = Sexo.valueOf(sexoString.toUpperCase());
         String email = rs.getString("email");
         String senha = rs.getString("senha");
 
-        return new Usuario(id, foto, nome, dataNasc, sexo, email, senha);
+        return new Usuario(id, nome, dataNasc, sexo, email, senha);
     }
 }

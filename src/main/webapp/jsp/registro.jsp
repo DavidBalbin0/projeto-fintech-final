@@ -11,41 +11,88 @@
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/css/nav.css">
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/css/reset.css">
+	href="F/css/reset.css">
 
 <title>Criação Usuário</title>
 </head>
 <body>
 	<div class="container flex-column-center">
 
-		<div class="flex-column-center mt-40">
-			<img src="/img/foto-user-2.png" alt="" class="foto-user" />
-			<div>
-				<button class="mt-10 button bg-verde-escuro">Upload Foto</button>
-			</div>
-		</div>
-		<div
-			class="card-container flex-column-center w-90 border-radius-10 py-20 box-shadow mt-10">
+		<div class="card-container flex-column-center w-90 border-radius-10 py-20 box-shadow mt-10">
+
 			<form action="" method="post" class="flex-column-center">
-				<input class="input" type="text" id="nome" name="nome"
-					placeholder="Nome Completo" /> <input class="input"
-					type="email" id="email" name="email" placeholder="E-mail" required />
-				<div class="flex space-between w-100 gap-10">
-					<input class="input" type="date" id="data_nascimento"
-						name="data_nascimento" placeholder="Data Nascimento" required />
-					<select class="input">
-						<option value="sexo">Gênero</option>
-						<option value="masculino">Masculino</option>
-						<option value="feminino">Feminino</option>
-					</select>
-				</div>
-				<input class="input" type="password" id="senha" name="senha"
-					placeholder="Senha" required /> <input class="input"
-					type="password" id="confirmar_senha" name="confirmar_senha"
-					placeholder="Confirmar Senha" required /> <input
-					class="button" type="submit" value="Registrar" />
+
+                <div>
+                    <input
+                            class="input"
+                            type="text" id="nome"
+                            name="nome"
+                            placeholder="Nome Completo"
+                    />
+                    <span class="error">${erros.nome}</span>
+                </div>
+
+                <div>
+                    <input
+                            class="input"
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="E-mail"
+                            required
+                    />
+                    <span class="error">${erros.email}</span>
+                </div>
+
+
+                <div class="flex space-between w-100 gap-10">
+                    <input
+                            class="input"
+                            type="date"
+                            id="data_nascimento"
+                            name="dataNasc"
+                            placeholder="Data Nascimento"
+                            required
+                    />
+                    <span class="error">${erros.dataNasc}</span>
+
+                    <select class="input" id="sexo" name="sexo">
+                        <option value="sexo">Gênero</option>
+                        <option value="masculino">Masculino</option>
+                        <option value="feminino">Feminino</option>
+                    </select>
+                    <span class="error">${erros.sexo}</span>
+                </div>
+                <div>
+                    <input
+                            class="input"
+                            type="password"
+                            id="senha"
+                            name="senha"
+                            placeholder="Senha"
+                            required
+                    />
+                    <span class="error">${erros.senha}</span>
+                </div>
+
+                <input
+					class="button" type="submit" value="Registrar"
+                />
 			</form>
 		</div>
 	</div>
+    <script>
+        function enviarFoto() {
+            var formFoto = document.getElementById('formFoto');
+            var formDataFoto = new FormData(formFoto);
+
+            var formUsuario = document.querySelector('.flex-column-center');
+            var formDataUsuario = new FormData(formUsuario);
+
+            for (var [key, value] of formDataUsuario.entries()) {
+                formDataFoto.append(key, value);
+            }
+        }
+    </script>
 </body>
 </html>

@@ -4,7 +4,8 @@ import com.fintech.dto.DespesaDto;
 import com.fintech.model.Despesa;
 
 import java.sql.*;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,23 +56,22 @@ public class DespesaDAO {
 
     public Long cadastra(DespesaDto despesaDto) {
         Long idDespesaCadastrada = null;
-        String sql = "{call inserir_despesa(?, ?, ?, ?, ?, ? )}";
+        String sql = "{call inserir_despesa(?, ?, ?, ?, ? )}";
 
         try (CallableStatement callableStatement = conexao.prepareCall(sql)) {
             callableStatement.setString(1, despesaDto.getDescricao());
-            callableStatement.setString(2, despesaDto.getCategoria());
-            callableStatement.setDouble(3, despesaDto.getValor());
-            callableStatement.setTimestamp(4, Timestamp.valueOf(despesaDto.getData()));
-            callableStatement.setLong(5, despesaDto.getContaId());
+            callableStatement.setDouble(2, despesaDto.getValor());
+            callableStatement.setTimestamp(3, Timestamp.valueOf(despesaDto.getData().atStartOfDay(ZoneId.systemDefault()).toLocalDateTime()));
+            callableStatement.setLong(4, despesaDto.getContaId());
 
             // Registrar o parâmetro de saída para o ID
-            callableStatement.registerOutParameter(6, Types.NUMERIC);
+            callableStatement.registerOutParameter(5, Types.NUMERIC);
 
             // Executar a instrução SQL
             callableStatement.execute();
 
             // Obter o ID gerado
-            idDespesaCadastrada = callableStatement.getLong(6);
+            idDespesaCadastrada = callableStatement.getLong(5);
 
         } catch (SQLException e) {
             e.printStackTrace(); // Tratar a exceção apropriadamente no seu código real
@@ -80,10 +80,10 @@ public class DespesaDAO {
         return idDespesaCadastrada;
     }
 
-    public List<Despesa> buscarTodasAsDespesasPorContaId(Long idConta){
+    public List<Despesa> buscarDespesasPorContaId(Long idConta){
         List despesas = new ArrayList<>();
 
-        String sql = "SELECT * FROM receita WHERE CONTA_ID = ?";
+        String sql = "SELECT * FROM despesa WHERE CONTA_ID = ?";
 
         try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
             stmt.setLong(1, idConta);
@@ -103,12 +103,11 @@ public class DespesaDAO {
     private Despesa mapearDespesa(ResultSet rs) throws SQLException {
         Long id = rs.getLong("id");
         String descricao = rs.getString("descricao");
-        String categoria = rs.getString("categoria");
         double valor = rs.getDouble("valor");
-        LocalDateTime data = rs.getTimestamp("data").toLocalDateTime();
+        LocalDate data = rs.getTimestamp("data").toLocalDateTime().toLocalDate();
         Long contaId = rs.getLong("conta_id");
 
-        return new Despesa(id, descricao, categoria, valor, data, contaId);
+        return new Despesa(id, descricao, valor, data, contaId);
     }
 
 }

@@ -40,7 +40,7 @@ public class LoginServlet extends HttpServlet {
 
 
 
-            response.sendRedirect(request.getContextPath() + "/jsp/home.jsp");
+            response.sendRedirect(request.getContextPath() + "/restrito/home");
         } else{
             request.setAttribute("erro", "Email ou senha inválidos");
             request.getRequestDispatcher("/jsp/login.jsp").forward(request, response);

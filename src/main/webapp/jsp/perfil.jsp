@@ -30,11 +30,12 @@
 
       <ul class="nav-list">
 
-        <li class="nav-item"><a href="#" class="nav-link">Início</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">Relatórios</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">Receitas</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">Despesas</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">Perfil</a></li>
+        <li class="nav-item"><a href="${pageContext.request.contextPath}/restrito/home" class="nav-link">Início</a></li>
+        <li class="nav-item"><a href="${pageContext.request.contextPath}/restrito/objetivos" class="nav-link">Objetivos</a></li>
+        <li class="nav-item"><a href="${pageContext.request.contextPath}/restrito/receitas" class="nav-link">Receitas</a></li>
+        <li class="nav-item"><a href="${pageContext.request.contextPath}/restrito/despesas" class="nav-link">Despesas</a></li>
+        <li class="nav-item"><a href="${pageContext.request.contextPath}/restrito/perfil" class="nav-link">Perfil</a></li>
+
 
       </ul>
 
@@ -46,11 +47,11 @@
     </nav>
     <div class="mobile-menu">
       <ul class="nav-list-mobile">
-        <li class="nav-item-mobile"><a href="#" class="nav-link">Início</a></li>
-        <li class="nav-item-mobile"><a href="#" class="nav-link">Relatórios</a></li>
-        <li class="nav-item-mobile"><a href="#" class="nav-link">Receitas</a></li>
-        <li class="nav-item-mobile"><a href="#" class="nav-link">Despesas</a></li>
-        <li class="nav-item-mobile"><a href="#" class="nav-link">Perfil</a></li>
+        <li class="nav-item-mobile"><a href="${pageContext.request.contextPath}/restrito/home" class="nav-link">Início</a></li>
+        <li class="nav-item-mobile"><a href="${pageContext.request.contextPath}/restrito/objetivos" class="nav-link">Objetivos</a></li>
+        <li class="nav-item-mobile"><a href="${pageContext.request.contextPath}/restrito/receitas" class="nav-link">Receitas</a></li>
+        <li class="nav-item-mobile"><a href="${pageContext.request.contextPath}/restrito/despesas" class="nav-link">Despesas</a></li>
+        <li class="nav-item-mobile"><a href="${pageContext.request.contextPath}/restrito/perfil" class="nav-link">Perfil</a></li>
       </ul>
     </div>
 

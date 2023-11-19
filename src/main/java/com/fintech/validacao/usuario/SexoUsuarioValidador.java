@@ -13,8 +13,10 @@ public class SexoUsuarioValidador implements Validador<UsuarioDto>{
 	@Override
 	public void validate(UsuarioDto usuario, HashMap<String, String> erros) {
 		String sexo = usuario.getSexo();
+		System.out.println(sexo);
 
 		try {
+
 			Sexo.valueOf(sexo.toUpperCase());
 		} catch (IllegalArgumentException e) {
 			erros.put("sexo", "O sexo inserido é inválido");

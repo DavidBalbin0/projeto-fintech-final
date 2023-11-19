@@ -30,11 +30,11 @@
 
 			<ul class="nav-list">
 
-				<li class="nav-item"><a href="#" class="nav-link">Início</a></li>
-				<li class="nav-item"><a href="#" class="nav-link">Relatórios</a></li>
-				<li class="nav-item"><a href="#" class="nav-link">Receitas</a></li>
-				<li class="nav-item"><a href="#" class="nav-link">Despesas</a></li>
-				<li class="nav-item"><a href="#" class="nav-link">Perfil</a></li>
+				<li class="nav-item"><a href="${pageContext.request.contextPath}/restrito/home" class="nav-link">Início</a></li>
+				<li class="nav-item"><a href="${pageContext.request.contextPath}/restrito/objetivos" class="nav-link">Objetivos</a></li>
+				<li class="nav-item"><a href="${pageContext.request.contextPath}/restrito/receitas" class="nav-link">Receitas</a></li>
+				<li class="nav-item"><a href="${pageContext.request.contextPath}/restrito/despesas" class="nav-link">Despesas</a></li>
+				<li class="nav-item"><a href="${pageContext.request.contextPath}/restrito/perfil" class="nav-link">Perfil</a></li>
 
 			</ul>
 
@@ -48,11 +48,11 @@
 		</nav>
 		<div class="mobile-menu">
 			<ul class="nav-list-mobile">
-				<li class="nav-item-mobile"><a href="#" class="nav-link">Início</a></li>
-				<li class="nav-item-mobile"><a href="#" class="nav-link">Relatórios</a></li>
-				<li class="nav-item-mobile"><a href="#" class="nav-link">Receitas</a></li>
-				<li class="nav-item-mobile"><a href="#" class="nav-link">Despesas</a></li>
-				<li class="nav-item-mobile"><a href="#" class="nav-link">Perfil</a></li>
+				<li class="nav-item-mobile"><a href="${pageContext.request.contextPath}/restrito/home" class="nav-link">Início</a></li>
+				<li class="nav-item-mobile"><a href="${pageContext.request.contextPath}/restrito/objetivos" class="nav-link">Objetivos</a></li>
+				<li class="nav-item-mobile"><a href="${pageContext.request.contextPath}/restrito/receitas" class="nav-link">Receitas</a></li>
+				<li class="nav-item-mobile"><a href="${pageContext.request.contextPath}/restrito/despesas" class="nav-link">Despesas</a></li>
+				<li class="nav-item-mobile"><a href="${pageContext.request.contextPath}/restrito/perfil" class="nav-link">Perfil</a></li>
 			</ul>
 		</div>
 
@@ -62,7 +62,7 @@
 		<div
 			class="card-container flex-column-center w-80 mt-40 border-radius-10 py-20 box-shadow bg-color-branco">
 			<h3 class="saldo fw-bold mb-10">Seu saldo atual é de:</h3>
-			<h3 class="saldo mb-10">R$7.346,33</h3>
+			<h3 class="saldo mb-10">R$${saldo}</h3>
 			<h2>Resumo Financeiro (últimos 10 dias)</h2>
 
 			<table>
@@ -71,36 +71,20 @@
 					<th>Valor</th>
 					<th>Data</th>
 				</tr>
-				<tr>
-					<td>Salário</td>
-					<td class="receita">R$ 3.000,00</td>
-					<td>10/11/2023</td>
-				</tr>
-				<tr>
-					<td>Aluguel</td>
-					<td class="gasto">- R$ 800,00</td>
-					<td>05/11/2023</td>
-				</tr>
-				<tr>
-					<td>Supermercado</td>
-					<td class="gasto">- R$ 200,00</td>
-					<td>05/11/2023</td>
-				</tr>
-				<tr>
-					<td>Transferência recebida</td>
-					<td class="receita">R$ 540,00</td>
-					<td>03/11/2023</td>
-				</tr>
-				<tr>
-					<td>Cartão de crédito</td>
-					<td class="gasto">- R$ 1.200,00</td>
-					<td>01/11/2023</td>
-				</tr>
-				<tr>
-					<td>Financiamento auto</td>
-					<td class="gasto">- R$ 672,00</td>
-					<td>01/11/2023</td>
-				</tr>
+				<c:forEach var="transacao" items="${transacoes}">
+					<tr>
+						<td>${transacao.descricao}</td>
+						<td class="${transacao.valor >= 0 ? 'receita' : 'gasto'}">${transacao.valor}</td>
+						<td>${transacao.data}</td>
+					</tr>
+
+				</c:forEach>
+
+<%--				<tr>--%>
+<%--					<td>Financiamento auto</td>--%>
+<%--					<td class="gasto">- R$ 672,00</td>--%>
+<%--					<td>01/11/2023</td>--%>
+<%--				</tr>--%>
 			</table>
 		</div>
 	</div>
@@ -108,6 +92,7 @@
 		<div class="mt-40 flex-column-center">
 			<button class="button">Mais informações</button>
 		</div>
+	</div>
 
 		<script>
 			document.getElementById("mostrar-menu").addEventListener('click',

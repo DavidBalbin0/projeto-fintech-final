@@ -24,17 +24,17 @@
 				<img class="icon-medium" src="/img/icone-logo.svg" alt="">
 				<div class="ms-10">
 					<h3>Olá,</h3>
-					<h3>Fernando</h3>
+					<h3>${nome}</h3>
 				</div>
 			</div>
 
 			<ul class="nav-list">
 
-				<li class="nav-item"><a href="#" class="nav-link">Início</a></li>
-				<li class="nav-item"><a href="#" class="nav-link">Relatórios</a></li>
-				<li class="nav-item"><a href="#" class="nav-link">Receitas</a></li>
-				<li class="nav-item"><a href="#" class="nav-link">Despesas</a></li>
-				<li class="nav-item"><a href="#" class="nav-link">Perfil</a></li>
+				<li class="nav-item"><a href="${pageContext.request.contextPath}/restrito/home" class="nav-link">Início</a></li>
+				<li class="nav-item"><a href="${pageContext.request.contextPath}/restrito/objetivos" class="nav-link">Objetivos</a></li>
+				<li class="nav-item"><a href="${pageContext.request.contextPath}/restrito/receitas" class="nav-link">Receitas</a></li>
+				<li class="nav-item"><a href="${pageContext.request.contextPath}/restrito/despesas" class="nav-link">Despesas</a></li>
+				<li class="nav-item"><a href="${pageContext.request.contextPath}/restrito/perfil" class="nav-link">Perfil</a></li>
 
 			</ul>
 
@@ -48,11 +48,11 @@
 		</nav>
 		<div class="mobile-menu">
 			<ul class="nav-list-mobile">
-				<li class="nav-item-mobile"><a href="#" class="nav-link">Início</a></li>
-				<li class="nav-item-mobile"><a href="#" class="nav-link">Relatórios</a></li>
-				<li class="nav-item-mobile"><a href="#" class="nav-link">Receitas</a></li>
-				<li class="nav-item-mobile"><a href="#" class="nav-link">Despesas</a></li>
-				<li class="nav-item-mobile"><a href="#" class="nav-link">Perfil</a></li>
+				<li class="nav-item-mobile"><a href="${pageContext.request.contextPath}/restrito/home" class="nav-link">Início</a></li>
+				<li class="nav-item-mobile"><a href="${pageContext.request.contextPath}/restrito/objetivos" class="nav-link">Objetivos</a></li>
+				<li class="nav-item-mobile"><a href="${pageContext.request.contextPath}/restrito/receitas" class="nav-link">Receitas</a></li>
+				<li class="nav-item-mobile"><a href="${pageContext.request.contextPath}/restrito/despesas" class="nav-link">Despesas</a></li>
+				<li class="nav-item-mobile"><a href="${pageContext.request.contextPath}/restrito/perfil" class="nav-link">Perfil</a></li>
 			</ul>
 		</div>
 
@@ -61,35 +61,56 @@
 	<div class="flex-center">
 		<div
 			class="card-container flex-column-center w-80 mt-40 border-radius-10 py-20 box-shadow bg-color-branco">
+
+			<form action="" method="post" class="flex-column-center">
+				<input type="text" name="descricao" placeholder="Descrição" required/>
+				<span class="error">${erros.descricao}</span>
+				<input type="text" name="valor" placeholder="Valor" required/>
+				<span class="error">${erros.valor}</span>
+				<input type="date" name="data" placeholder="Data" required/>
+				<span class="error">${erros.data}</span>
+
+				<input class="button" type="submit" value="Adicionar Receita"/>
+			</form>
+
+
+
 			<h3 class="saldo fw-bold mb-10">Receitas cadastradas</h3>
 
 			<table>
 				<tr>
 					<th>Descrição</th>
 					<th>Valor</th>
-					<th>Tipo</th>
 					<th>Data</th>
 				</tr>
-				<tr>
-					<td>Salário</td>
-					<td class="receita">R$ 3.000,00</td>
-					<td>Fixo</td>
-					<td>Todo dia 10</td>
-				</tr>
-				<tr>
-					<td>Transferência recebida</td>
-					<td class="receita">R$ 540,00</td>
-					<td>Variável</td>
-					<td>03/11/2023</td>
-				</tr>
-				</tr>
+				<c:forEach var="receita" items="${receitas}">
+					<tr>
+						<td>${receita.descricao}</td>
+						<td class="receita">${receita.valor}</td>
+						<td>${receita.data}</td>
+					</tr>
+
+				</c:forEach>
+				<c:if test="${empty receitas}">
+					<p>Sem receitas cadastradas.</p>
+				</c:if>
+<%--				<tr>--%>
+<%--					<td>Transferência recebida</td>--%>
+<%--					<td class="receita">R$ 540,00</td>--%>
+<%--					<td>03/11/2023</td>--%>
+<%--				</tr>--%>
 			</table>
 		</div>
+
+		<form>
+
+		</form>
 	</div>
 	<div class="flex-column-center">
 		<div class="mt-40 flex-column-center">
 			<button class="button">Cadastrar novo</button>
 		</div>
+	</div>
 
 		<script>
 			document.getElementById("mostrar-menu").addEventListener('click',

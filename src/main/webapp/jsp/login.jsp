@@ -25,9 +25,9 @@
             </div>
         </div>
         <div class="card-container flex-column-center w-80 mt-40 border-radius-10 py-20 box-shadow">
-            <form action="" class="flex-column-center">
-                <input type="text" placeholder="E-Mail" class="input">
-                <input type="password" placeholder="Senha" class="input">
+            <form action="" method="post" class="flex-column-center">
+                <input type="text" placeholder="E-Mail" class="input" name="email">
+                <input type="password" placeholder="Senha" class="input"  name="senha">
                 <div class="space-between mt-80">
                     <div class="flex-align-center"> 
                         <input type="checkbox" class="check-box">
@@ -37,8 +37,8 @@
                 </div>
 
                 <div class="mt-10 w-100 flex-column-center">
-                    <button class="button">Entrar</button>
-                    <p class="fs-xsmall mt-10">Não tem conta? <a href="" class="fw-bold link color-verde-escuro">Registre-se </a></p>
+                    <button type="submit" class="button">Entrar</button>
+                    <p class="fs-xsmall mt-10">Não tem conta? <a href="/cadastro" class="fw-bold link color-verde-escuro">Registre-se </a></p>
                 </div>
                 
 
