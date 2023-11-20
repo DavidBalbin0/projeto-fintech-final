@@ -11,6 +11,9 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/styles.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/nav.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200&display=swap" rel="stylesheet">
     <title>Fintech</title>
 </head>
 
@@ -95,8 +98,8 @@
 
                         <td>
                             <!-- Adicionando botão de editar -->
-                            <button onclick="abrirModal('${objetivo.id}', '${objetivo.descricao}', '${objetivo.saldo}', '${objetivo.dataInicio}', '${objetivo.dataFinal}', '${objetivo.meta}')">
-                                Editar
+                            <button class="button-adicionar"  onclick="abrirModal('${objetivo.id}', '${objetivo.saldo}')">
+                                <img src="${pageContext.request.contextPath}/imagens/plus.png"/>
                             </button>
                         </td>
                     </tr>
@@ -111,32 +114,20 @@
 
         <!-- Modal de Edição -->
         <div id="modalEditar" class="modal">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2>Editar Objetivo</h2>
-                    <span class="modal-close" onclick="fecharModal()">&times;</span>
-                </div>
+            <div class="modal-content flex-column-center mt-10">
+
+                <h2>Editar Objetivo</h2>
+                <span class="close mb-10" onclick="fecharModal()">&times;</span>
                 <form action="${pageContext.request.contextPath}/editar-objetivo" method="post"
                       class="flex-column-center">
                     <!-- Seus campos de edição aqui -->
                     <input type="hidden" id="editId" name="id"/>
 
-                    <input type="text" id="editDescricao" name="descricao" placeholder="Descrição" required/>
-                    <span class="error">${empty erros ? '' : erros.descricao}</span>
 
-                    <input type="text" id="editValor" name="valor" placeholder="Valor" required/>
+                    <input class="input border-verde" type="text" id="editValor" name="valor" placeholder="Adicionar valor" required/>
                     <span class="error">${empty erros ? '' : erros.saldo}</span>
 
-                    <input type="text" id="editDataInicio" name="dataInicio" placeholder="Data Inicial" required/>
-                    <span class="error">${empty erros ? '' : erros.dataInicio}</span>
-
-                    <input type="text" id="editDataFinal" name="dataFinal" placeholder="Data Final" required/>
-                    <span class="error">${empty erros ? '' : erros.dataFinal}</span>
-
-                    <input type="text" id="editMeta" name="meta" placeholder="Meta" required/>
-                    <span class="error">${empty erros ? '' : erros.meta}</span>
-
-                    <input class="button" type="submit" value="Salvar Edições"/>
+                    <input class="button" type="submit" value="Adicionar saldo"/>
                 </form>
             </div>
         </div>
@@ -202,14 +193,10 @@
         };
     });
 
-    function abrirModal(id, descricao, valor, dataInicio, dataFinal, meta) {
+    function abrirModal(id, descricao, valor) {
         // Preencher os campos do modal com os valores do objetivo
         document.getElementById("editId").value = id;
-        document.getElementById("editDescricao").value = descricao;
         document.getElementById("editValor").value = valor;
-        document.getElementById("editDataInicio").value = dataInicio;
-        document.getElementById("editDataFinal").value = dataFinal;
-        document.getElementById("editMeta").value = meta;
 
         // Exibir o modal
         document.getElementById("modalEditar").style.display = "block";

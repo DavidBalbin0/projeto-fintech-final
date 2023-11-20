@@ -614,3 +614,16 @@ form {
 .border-verde{
     border: 1px solid var(--verde);
 }
+
+.button-adicionar {
+    background: none;
+    border: none;
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.button-adicionar img {
+    width: 40px;
+    height: 40px;
+}

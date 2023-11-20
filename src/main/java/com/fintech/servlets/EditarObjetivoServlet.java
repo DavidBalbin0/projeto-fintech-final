@@ -16,7 +16,6 @@ public class EditarObjetivoServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws  IOException {
         // Recuperar os parâmetros do formulário
         String idStr = request.getParameter("id");
-        String descricao = request.getParameter("descricao");
         String saldoStr = request.getParameter("valor");
 
         // Convertendo strings para tipos apropriados (você pode precisar validar esses valores)

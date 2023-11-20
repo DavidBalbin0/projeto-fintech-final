@@ -115,16 +115,16 @@
         <span class="close mb-10" id="closeModalBtn">&times;</span>
         <form action="" method="post" class="flex-column-center" id="modalForm">
             <label for="descricao">Descrição:</label>
-            <input class="mb-10 border-radius-5 " type="text" name="descricao" id="descricao" placeholder="Descrição"
+            <input class="input border-verde" type="text" name="descricao" id="descricao" placeholder="Descrição"
                    required/>
             <span class="error">${erros.descricao}</span>
 
             <label for="valor">Valor:</label>
-            <input class="mb-10 border-radius-5" type="text" name="valor" id="valor" placeholder="Valor" required/>
+            <input class="input border-verde" type="text" name="valor" id="valor" placeholder="Valor" required/>
             <span class="error">${erros.valor}</span>
 
             <label for="data">Data:</label>
-            <input class="mb-10 border-radius-5" type="date" name="data" id="data" required/>
+            <input class="input border-verde" type="date" name="data" id="data" required/>
             <span class="error">${erros.data}</span>
 
             <input class="button mt-10" type="submit" value="Adicionar"/>
