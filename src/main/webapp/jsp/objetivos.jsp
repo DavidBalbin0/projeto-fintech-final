@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
 
 <!DOCTYPE html>
 <html>
@@ -82,11 +85,14 @@
                     <tr>
                         <!-- (Colunas da tabela) -->
                         <td>${objetivo.descricao}</td>
+                        <td>${objetivo.saldo}</td>
                         <td>${objetivo.dataInicio}</td>
                         <td>${objetivo.dataFinal}</td>
-                        <td>${objetivo.saldo}</td>
                         <td>${objetivo.meta}</td>
-                        <td>${objetivo.progresso.toFixed(2)}%</td>
+                        <td>
+                            <fmt:formatNumber value="${objetivo.progresso}" type="number" maxFractionDigits="2" /> %
+                        </td>
+
                         <td>
                             <!-- Adicionando botão de editar -->
                             <button onclick="abrirModal('${objetivo.id}', '${objetivo.descricao}', '${objetivo.saldo}', '${objetivo.dataInicio}', '${objetivo.dataFinal}', '${objetivo.meta}')">

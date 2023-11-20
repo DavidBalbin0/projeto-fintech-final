@@ -38,6 +38,7 @@ public class ObjetivosServlet extends HttpServlet {
         List<Objetivo> objetivos =  contaService.pegarObjetivos(usuario);
 
         request.setAttribute("objetivos", objetivos);
+        request.setAttribute("nome", usuario.getNome());
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/objetivos.jsp");
         dispatcher.forward(request, response);
@@ -89,7 +90,7 @@ public class ObjetivosServlet extends HttpServlet {
             response.sendRedirect(request.getContextPath() + "/restrito/objetivos");
         }else {
             request.setAttribute("erros", erros);
-            request.getRequestDispatcher("restrito/objetivo").forward(request, response);
+            response.sendRedirect(request.getContextPath() + "/restrito/objetivos");
         }
     }
 }

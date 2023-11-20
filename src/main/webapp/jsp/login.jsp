@@ -28,6 +28,7 @@
             <form action="" method="post" class="flex-column-center">
                 <input type="text" placeholder="E-Mail" class="input" name="email">
                 <input type="password" placeholder="Senha" class="input"  name="senha">
+                <span class="error">${erro}</span>
                 <div class="space-between mt-80">
                     <div class="flex-align-center"> 
                         <input type="checkbox" class="check-box">

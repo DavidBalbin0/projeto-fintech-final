@@ -79,7 +79,7 @@ public class ReceitaServlet extends HttpServlet {
             response.sendRedirect(request.getContextPath() + "/restrito/receitas");
         }else {
             request.setAttribute("erros", erros);
-            request.getRequestDispatcher("restrito/receitas").forward(request, response);
+            response.sendRedirect(request.getContextPath() + "/restrito/receitas");
         }
     }
 }
