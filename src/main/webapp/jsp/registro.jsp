@@ -59,15 +59,17 @@
                             placeholder="Data Nascimento"
                             required
                     />
-                    <span class="error">${erros.dataNasc}</span>
+
 
                     <select class="input" id="sexo" name="sexo">
                         <option value="sexo">Gênero</option>
                         <option value="masculino">Masculino</option>
                         <option value="feminino">Feminino</option>
                     </select>
-                    <span class="error">${erros.sexo}</span>
+
                 </div>
+                <span class="error">${erros.dataNasc}</span>
+                <span class="error">${erros.sexo}</span>
                 <div class="w-100">
                     <input
                             class="input w-100"

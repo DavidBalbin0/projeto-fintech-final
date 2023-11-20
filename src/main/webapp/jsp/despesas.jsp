@@ -71,7 +71,6 @@
 				<tr>
 					<th>Descrição</th>
 					<th>Valor</th>
-					<th>Tipo</th>
 					<th>Data</th>
 				</tr>
 				<c:forEach var="despesa" items="${despesas}">

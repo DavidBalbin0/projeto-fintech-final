@@ -9,18 +9,20 @@ import java.util.HashMap;
 
 public class DataNascValidador implements Validador<UsuarioDto> {
 
-    public boolean validarDataNascimento(LocalDate dataNasc) {
+    public boolean isMenorQue12Anos(LocalDate dataNasc) {
         LocalDate dataAtual = LocalDate.now();
 
-        return !dataNasc.plusYears(12).isAfter(dataAtual) || !dataNasc.isAfter(dataAtual);
+        // Retorna true se a pessoa for menor de 12 anos
+        return dataNasc.plusYears(12).isAfter(dataAtual);
     }
+
     @Override
     public void validate(UsuarioDto usuario, HashMap<String, String> erros) {
         LocalDate dataNascimento = usuario.getDataNasc();
 
-        if (!validarDataNascimento(dataNascimento)) {
+        // Se a validação falhar, adicione a mensagem de erro ao HashMap
+        if (isMenorQue12Anos(dataNascimento)) {
             erros.put("dataNasc", "A data de nascimento não é válida ou o usuário é menor de 12 anos.");
         }
-
     }
 }

@@ -610,3 +610,7 @@ form {
     width: 60%;
     max-width: 300px;
 }
+
+.border-verde{
+    border: 1px solid var(--verde);
+}

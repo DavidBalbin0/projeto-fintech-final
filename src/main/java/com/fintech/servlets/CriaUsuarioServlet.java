@@ -49,9 +49,6 @@ public class CriaUsuarioServlet extends HttpServlet {
 		}
 
 		UsuarioDto usuarioDto = new UsuarioDto(nome, dataNasc, sexo, email, senha);
-		//usuariodto
-		//usuario
-		//todos os metodos que quebrarem
 
 		HashMap<String, String> erros = new HashMap<String, String>();
 

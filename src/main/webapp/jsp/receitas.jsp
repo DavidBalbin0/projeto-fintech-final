@@ -115,7 +115,7 @@
         <span class="close mb-10" id="closeModalBtn">&times;</span>
         <form action="" method="post" class="flex-column-center" id="modalForm">
             <label for="descricao">Descrição:</label>
-            <input class="mb-10 border-radius-5" type="text" name="descricao" id="descricao" placeholder="Descrição"
+            <input class="mb-10 border-radius-5 " type="text" name="descricao" id="descricao" placeholder="Descrição"
                    required/>
             <span class="error">${erros.descricao}</span>
 

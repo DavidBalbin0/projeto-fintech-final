@@ -13,7 +13,53 @@
 
 <body class="bg-verde-claro">
 <header class="bg-color-branco header">
-    <!-- ... (Código do cabeçalho) ... -->
+    <nav class="nav-bar">
+
+        <div class="tool-left">
+            <img class="icon-medium" src="${pageContext.request.contextPath}/imagens/icone-logo.svg" alt="">
+            <div class="ms-10">
+                <h3>Olá,</h3>
+                <h3>${nome}</h3>
+            </div>
+        </div>
+
+        <ul class="nav-list">
+
+            <li class="nav-item"><a href="${pageContext.request.contextPath}/restrito/home" class="nav-link">Início</a>
+            </li>
+            <li class="nav-item"><a href="${pageContext.request.contextPath}/restrito/objetivos" class="nav-link">Objetivos</a>
+            </li>
+            <li class="nav-item"><a href="${pageContext.request.contextPath}/restrito/receitas" class="nav-link">Receitas</a>
+            </li>
+            <li class="nav-item"><a href="${pageContext.request.contextPath}/restrito/despesas" class="nav-link">Despesas</a>
+            </li>
+            <li class="nav-item"><a href="${pageContext.request.contextPath}/restrito/perfil"
+                                    class="nav-link">Perfil</a></li>
+
+        </ul>
+
+        <div class="botao-mobile-menu">
+            <button id="mostrar-menu">
+                <img src="${pageContext.request.contextPath}/imagens/icone-mobile-verde.svg" alt="">
+            </button>
+        </div>
+
+
+    </nav>
+    <div class="mobile-menu">
+        <ul class="nav-list-mobile">
+            <li class="nav-item-mobile"><a href="${pageContext.request.contextPath}/restrito/home" class="nav-link">Início</a>
+            </li>
+            <li class="nav-item-mobile"><a href="${pageContext.request.contextPath}/restrito/objetivos"
+                                           class="nav-link">Objetivos</a></li>
+            <li class="nav-item-mobile"><a href="${pageContext.request.contextPath}/restrito/receitas" class="nav-link">Receitas</a>
+            </li>
+            <li class="nav-item-mobile"><a href="${pageContext.request.contextPath}/restrito/despesas" class="nav-link">Despesas</a>
+            </li>
+            <li class="nav-item-mobile"><a href="${pageContext.request.contextPath}/restrito/perfil" class="nav-link">Perfil</a>
+            </li>
+        </ul>
+    </div>
 </header>
 
 <div class="flex-center">
@@ -40,7 +86,7 @@
                         <td>${objetivo.dataFinal}</td>
                         <td>${objetivo.saldo}</td>
                         <td>${objetivo.meta}</td>
-                        <td>${objetivo.progresso}%</td>
+                        <td>${objetivo.progresso.toFixed(2)}%</td>
                         <td>
                             <!-- Adicionando botão de editar -->
                             <button onclick="abrirModal('${objetivo.id}', '${objetivo.descricao}', '${objetivo.saldo}', '${objetivo.dataInicio}', '${objetivo.dataFinal}', '${objetivo.meta}')">
@@ -92,28 +138,28 @@
         <!-- Modal Cadastrar -->
         <div id="myModal" class="modal">
             <div class="modal-content flex-column-center mt-10">
-                <div class="modal-header">
-                    <h2>Cadastrar Objetivo</h2>
-                    <span class="close mb-10" id="closeModalBtn">&times;</span>
-                </div>
-                <form action="${pageContext.request.contextPath}/editar-objetivo" method="post"
+
+                <h2>Cadastrar Objetivo</h2>
+                <span class="close mb-10" id="closeModalBtn">&times;</span>
+
+                <form action="${pageContext.request.contextPath}/restrito/objetivos" method="post"
                       class="flex-column-center">
                     <!-- Seus campos de edição aqui -->
                     <input type="hidden" id="id" name="id"/>
 
-                    <input type="text" id="descricao" name="descricao" placeholder="Descrição" required/>
+                    <input class="input border-verde" type="text" id="descricao" name="descricao" placeholder="Descrição" required/>
                     <span class="error">${empty erros ? '' : erros.descricao}</span>
 
-                    <input type="text" id="valor" name="valor" placeholder="Valor" required/>
+                    <input class="input border-verde" type="text" id="valor" name="valor" placeholder="Valor" required/>
                     <span class="error">${empty erros ? '' : erros.saldo}</span>
 
-                    <input type="date" id="dataInicio" name="dataInicio" placeholder="Data Inicial" required/>
+                    <input class="input border-verde" type="date" id="dataInicio" name="dataInicio" placeholder="Data Inicial" required/>
                     <span class="error">${empty erros ? '' : erros.dataInicio}</span>
 
-                    <input type="date" id="dataFinal" name="dataFinal" placeholder="Data Final" required/>
+                    <input class="input border-verde" type="date" id="dataFinal" name="dataFinal" placeholder="Data Final" required/>
                     <span class="error">${empty erros ? '' : erros.dataFinal}</span>
 
-                    <input type="text" id="meta" name="meta" placeholder="Meta" required/>
+                    <input class="input border-verde" type="text" id="meta" name="meta" placeholder="Meta" required/>
                     <span class="error">${empty erros ? '' : erros.meta}</span>
 
                     <input class="button" type="submit" value="Cadastrar Objetivo"/>
