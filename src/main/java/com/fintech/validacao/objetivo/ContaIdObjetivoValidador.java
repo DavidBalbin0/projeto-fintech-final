@@ -1,6 +1,7 @@
-//package com.fintech.validacao.investimento;
+//package com.fintech.validacao.objetivo;
 //
-//import com.fintech.dto.InvestimentoDto;
+//
+//import com.fintech.dto.ObjetivoDto;
 //import com.fintech.validacao.Validador;
 //
 //import java.util.HashMap;
