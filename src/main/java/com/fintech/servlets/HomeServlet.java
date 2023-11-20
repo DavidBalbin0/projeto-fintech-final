@@ -37,7 +37,10 @@ public class HomeServlet extends HttpServlet {
         UsuarioService usuarioService = new UsuarioService();
         ContaService contaService = new ContaService();
 
+
         Usuario usuario = usuarioService.buscarPorEmail(emailUsuarioLogado);
+        Conta conta = contaService.buscarContaPorUsuarioId(usuario.getId());
+
         List<Transacao> transacoes = new ArrayList<>();
         try {
             transacoes =  contaService.pegarAndOrdenarTransacoesRecente(usuario);
@@ -45,8 +48,11 @@ public class HomeServlet extends HttpServlet {
             request.setAttribute("erro", "Sem transacoes recentes");
         }
 
-        request.setAttribute("trasacoes", transacoes);
+        request.setAttribute("transacoes", transacoes);
+        request.setAttribute("saldo", conta.getSaldo());
         request.setAttribute("nome", usuario.getNome());
+
+        System.out.println(transacoes);
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/home.jsp");
         dispatcher.forward(request, response);

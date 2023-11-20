@@ -100,6 +100,17 @@ public class DespesaDAO {
         return despesas;
     }
 
+    public void excluirPorContaId(Long contaId) {
+        String sql = "DELETE FROM DESPESA WHERE CONTA_ID = ?";
+
+        try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
+            stmt.setLong(1, contaId);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();  // Tratar a exceção apropriadamente no seu código real
+        }
+    }
+
     private Despesa mapearDespesa(ResultSet rs) throws SQLException {
         Long id = rs.getLong("id");
         String descricao = rs.getString("descricao");

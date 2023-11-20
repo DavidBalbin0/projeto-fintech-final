@@ -18,7 +18,7 @@ public class DescricaoDespesaValidador implements Validador<DespesaDto> {
         }
 
         int comprimento = descricao.length();
-        if (comprimento < 5 || comprimento > 50){
+        if (comprimento < 3 || comprimento > 50){
             adicionarErro(erros, "A descrição deve ter entre 5 e 50 caracteres!");
         }
     }

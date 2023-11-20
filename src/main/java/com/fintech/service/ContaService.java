@@ -74,6 +74,8 @@ public class ContaService {
             receita = receitaDAO.buscaPorId(id);
             Conta conta = buscaContaPorId(receita.getContaId());
             conta.adicionarValor(receita.getValor());
+            contaDAO.atualizarConta(conta);
+
         }catch (NullPointerException e){
             System.out.println("erro ao cadastrar receita!");
         }
@@ -87,6 +89,7 @@ public class ContaService {
             despesa = despesaDAO.buscaPorId(id);
             Conta conta = buscaContaPorId(despesa.getContaId());
             conta.adicionarValor(despesa.getValor());
+            contaDAO.atualizarConta(conta);
         } catch (NullPointerException e){
             System.out.println("erro ao cadastrar despesa!");
         }
@@ -124,5 +127,14 @@ public class ContaService {
         Objetivo objetivo = objetivoDAO.buscaPorId(id);
         objetivo.adicionarSaldo(saldo);
         objetivoDAO.atualizarObjetivo(objetivo);
+    }
+
+    public void excluirContaPorUsuarioId(Long usuarioId) {
+        Conta conta = contaDAO.buscaPorUsuarioId(usuarioId);
+        Long contaId = conta.getId();
+        objetivoDAO.excluirPorContaId(contaId);
+        receitaDAO.excluirPorContaId(contaId);
+        despesaDAO.excluirPorContaId(contaId);
+        contaDAO.excluirContaPorIdUsuario(usuarioId);
     }
 }

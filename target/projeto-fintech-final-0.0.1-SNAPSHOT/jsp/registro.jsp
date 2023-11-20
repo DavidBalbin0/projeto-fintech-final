@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/css/pagina1.css">
+	href="${pageContext.request.contextPath}/css/styles.css">
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/css/nav.css">
 <link rel="stylesheet" type="text/css"
@@ -17,14 +17,19 @@
 </head>
 <body>
 	<div class="container flex-column-center">
-
+        <div class="flex-column-center mt-40">
+            <img src="${pageContext.request.contextPath}/imagens/icone-logo.svg" id="img-logo-principal" alt="">
+            <div class="flex font-title">
+                <h1 class="title">FINTECH</h1>
+            </div>
+        </div>
 		<div class="card-container flex-column-center w-90 border-radius-10 py-20 box-shadow mt-10">
 
 			<form action="" method="post" class="flex-column-center">
 
-                <div>
+                <div class="w-100">
                     <input
-                            class="input"
+                            class="input w-100"
                             type="text" id="nome"
                             name="nome"
                             placeholder="Nome Completo"
@@ -32,9 +37,9 @@
                     <span class="error">${erros.nome}</span>
                 </div>
 
-                <div>
+                <div class="w-100" >
                     <input
-                            class="input"
+                            class="input w-100"
                             type="email"
                             id="email"
                             name="email"
@@ -63,9 +68,9 @@
                     </select>
                     <span class="error">${erros.sexo}</span>
                 </div>
-                <div>
+                <div class="w-100">
                     <input
-                            class="input"
+                            class="input w-100"
                             type="password"
                             id="senha"
                             name="senha"

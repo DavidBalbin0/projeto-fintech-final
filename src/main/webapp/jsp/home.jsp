@@ -7,14 +7,13 @@
 <head>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/css/pagina1.css">
+	href="${pageContext.request.contextPath}/css/styles.css">
 	<link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/css/nav.css">
 	<link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/css/reset.css">
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap" rel="stylesheet">
+	<link rel="stylesheet"
+		  href="https://fonts.googleapis.com/css2?family=Josefin+Slnavab:wght@400;600;700&family=Montserrat:wght@400;600;700&family=Roboto:wght@300;400;500&display=swap">
 
 	<title>Fintech</title>
 </head>
@@ -82,6 +81,14 @@
 					</tr>
 
 				</c:forEach>
+
+				<c:if test="${empty transacoes}">
+					<tr>
+						<td colspan="7">
+							<p>Sem transações cadastradas.</p>
+						</td>
+					</tr>
+				</c:if>
 
 <%--				<tr>--%>
 <%--					<td>Financiamento auto</td>--%>

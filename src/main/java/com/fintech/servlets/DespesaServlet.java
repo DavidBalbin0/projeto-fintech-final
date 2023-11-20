@@ -38,6 +38,13 @@ public class DespesaServlet extends HttpServlet {
 
         List<Despesa> despesas =  contaService.pegarDespesas(usuario);
 
+        HashMap<String, String> erros = (HashMap<String, String>) sessao.getAttribute("erros");
+        if (erros != null) {
+            // Remove os erros da sessão
+            sessao.removeAttribute("erros");
+        }
+        System.out.println(erros);
+        request.setAttribute("erros", erros);
         request.setAttribute("despesas", despesas);
         request.setAttribute("nome", usuario.getNome());
 
@@ -81,8 +88,9 @@ public class DespesaServlet extends HttpServlet {
 
             response.sendRedirect(request.getContextPath() + "/restrito/despesas");
         }else {
-            request.setAttribute("erros", erros);
-            request.getRequestDispatcher("restrito/despesas").forward(request, response);
+            HttpSession session = request.getSession(true);
+            session.setAttribute("erros", erros);
+            response.sendRedirect(request.getContextPath() + "/restrito/despesas");
         }
     }
 }

@@ -110,22 +110,7 @@ public class ObjetivoDAO {
     }
 
 
-    private Objetivo mapearObjetivo(ResultSet rs) throws SQLException {
-        Long id = rs.getLong("id");
-        String descricao = rs.getString("descricao");
-        double saldo = rs.getDouble("saldo");
-        LocalDate dataInicial = rs.getTimestamp("data_inicio").toLocalDateTime().toLocalDate();
-        LocalDate dataFinal = rs.getTimestamp("data_final").toLocalDateTime().toLocalDate();
-        double meta = rs.getDouble("meta");
-        double progresso = rs.getDouble("progresso");
-        Long contaId = rs.getLong("conta_id");
 
-
-        OracleDAOFactory daoFactory = new OracleDAOFactory();
-        Conta conta = daoFactory.pegaContaDao().buscaPorId(contaId);
-
-        return new Objetivo(id, descricao, saldo, dataInicial, dataFinal, meta, progresso, contaId);
-    }
 
     public void atualizarObjetivo(Objetivo objetivo) {
         String sql = "UPDATE objetivo SET descricao = ?, saldo = ?, data_inicio = ?, data_final = ?, meta = ?, progresso = ?, conta_id = ? WHERE id = ?";
@@ -144,5 +129,33 @@ public class ObjetivoDAO {
         } catch (SQLException e) {
             e.printStackTrace();  // Tratar a exceção apropriadamente no seu código real
         }
+    }
+
+    public void excluirPorContaId(Long contaId) {
+        String sql = "DELETE FROM objetivo WHERE CONTA_ID = ?";
+
+        try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
+            stmt.setLong(1, contaId);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();  // Tratar a exceção apropriadamente no seu código real
+        }
+    }
+
+    private Objetivo mapearObjetivo(ResultSet rs) throws SQLException {
+        Long id = rs.getLong("id");
+        String descricao = rs.getString("descricao");
+        double saldo = rs.getDouble("saldo");
+        LocalDate dataInicial = rs.getTimestamp("data_inicio").toLocalDateTime().toLocalDate();
+        LocalDate dataFinal = rs.getTimestamp("data_final").toLocalDateTime().toLocalDate();
+        double meta = rs.getDouble("meta");
+        double progresso = rs.getDouble("progresso");
+        Long contaId = rs.getLong("conta_id");
+
+
+        OracleDAOFactory daoFactory = new OracleDAOFactory();
+        Conta conta = daoFactory.pegaContaDao().buscaPorId(contaId);
+
+        return new Objetivo(id, descricao, saldo, dataInicial, dataFinal, meta, progresso, contaId);
     }
 }

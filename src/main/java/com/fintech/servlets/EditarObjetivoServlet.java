@@ -17,7 +17,7 @@ public class EditarObjetivoServlet extends HttpServlet {
         // Recuperar os parâmetros do formulário
         String idStr = request.getParameter("id");
         String descricao = request.getParameter("descricao");
-        String saldoStr = request.getParameter("saldo");
+        String saldoStr = request.getParameter("valor");
 
         // Convertendo strings para tipos apropriados (você pode precisar validar esses valores)
         long id = parseLong(idStr);

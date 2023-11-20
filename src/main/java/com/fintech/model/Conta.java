@@ -32,13 +32,7 @@ public class Conta implements Serializable {
 	}
 
 	public void adicionarValor(double valor) {
-		if (valor < 0){
-			if (valor <= saldo) {
-				saldo -= valor;
-			}
-		} else {
 			saldo += valor;
-		}
 	}
 
 	public Long getId() { return id; }

@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/css/pagina1.css">
+	href="${pageContext.request.contextPath}/css/styles.css">
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/css/nav.css">
 <link rel="stylesheet" type="text/css"

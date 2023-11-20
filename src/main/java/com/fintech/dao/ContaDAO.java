@@ -31,6 +31,23 @@ public class ContaDAO {
         }
         return conta;
     }
+    public Conta buscaPorUsuarioId(Long usuarioId) {
+        Conta conta = null;
+        String sql = "SELECT * FROM conta WHERE USUARIO_ID = ?";
+
+        try (PreparedStatement stmt = conexao.prepareStatement(sql)){
+            stmt.setLong(1, usuarioId);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    conta = mapearConta(rs);
+                }
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return conta;
+    }
 
     public List<Conta> buscaTodas() {
         List<Conta> contas = new ArrayList<>();
@@ -94,6 +111,31 @@ public class ContaDAO {
         }
 
         return conta;
+    }
+
+    public void excluirContaPorIdUsuario(Long idUsuario) {
+        String sql = "DELETE FROM conta WHERE USUARIO_ID = ?";
+
+        try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
+            stmt.setLong(1, idUsuario);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();  // Tratar a exceção apropriadamente no seu código real
+        }
+    }
+
+    public void atualizarConta(Conta conta) {
+        String sql = "UPDATE conta SET nome = ?, saldo = ? WHERE id = ?";
+
+        try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
+            stmt.setString(1, conta.getNome());
+            stmt.setDouble(2, conta.getSaldo());
+            stmt.setLong(3, conta.getId());
+
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();  // Tratar a exceção apropriadamente no seu código real
+        }
     }
 
     public Conta mapearConta(ResultSet rs) throws SQLException{

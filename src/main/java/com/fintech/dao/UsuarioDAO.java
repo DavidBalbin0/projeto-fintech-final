@@ -17,6 +17,9 @@ public class UsuarioDAO {
         this.conexao = conexao;
     }
 
+    OracleDAOFactory daoFactory =new OracleDAOFactory();
+    ContaDAO contaDAO = daoFactory.pegaContaDao();
+
     public Usuario buscaUsuarioPorId(Long idUsuario) {
         Usuario usuario = null;
         String sql = "SELECT * FROM usuario WHERE id = ?";
@@ -94,5 +97,17 @@ public class UsuarioDAO {
         String senha = rs.getString("senha");
 
         return new Usuario(id, nome, dataNasc, sexo, email, senha);
+    }
+
+    public void excluirUsuario(Long idUsuario) {
+        String sql = "DELETE FROM usuario WHERE id = ?";
+
+        try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
+            stmt.setLong(1, idUsuario);
+            stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();  // Tratar a exceção apropriadamente no seu código real
+        }
     }
 }

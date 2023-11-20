@@ -19,7 +19,7 @@ public class DataNascValidador implements Validador<UsuarioDto> {
         LocalDate dataNascimento = usuario.getDataNasc();
 
         if (!validarDataNascimento(dataNascimento)) {
-            erros.put("dataNascimento", "A data de nascimento não é válida ou o usuário é menor de 12 anos.");
+            erros.put("dataNasc", "A data de nascimento não é válida ou o usuário é menor de 12 anos.");
         }
 
     }
