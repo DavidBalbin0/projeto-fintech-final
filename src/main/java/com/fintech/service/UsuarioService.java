@@ -103,7 +103,7 @@ public class UsuarioService {
             try {
                 if (conexao != null) {
                     conexao.setAutoCommit(true);
-                    conexao.close();
+//                    conexao.close();
                 }
             } catch (SQLException closeException) {
                 closeException.printStackTrace();
