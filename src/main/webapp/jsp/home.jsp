@@ -98,11 +98,6 @@
 			</table>
 		</div>
 	</div>
-	<div class="flex-column-center">
-		<div class="mt-40 flex-column-center">
-			<button class="button">Mais informações</button>
-		</div>
-	</div>
 
 		<script>
 			document.getElementById("mostrar-menu").addEventListener('click',

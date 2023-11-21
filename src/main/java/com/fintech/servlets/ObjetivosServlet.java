@@ -8,6 +8,7 @@ import com.fintech.model.Receita;
 import com.fintech.model.Usuario;
 import com.fintech.service.ContaService;
 import com.fintech.service.UsuarioService;
+import com.fintech.service.ValidadorObjetivoService;
 import com.fintech.service.ValidadorReceitaService;
 
 import javax.servlet.RequestDispatcher;
@@ -79,9 +80,9 @@ public class ObjetivosServlet extends HttpServlet {
 
 
         ObjetivoDto objetivoDto = new ObjetivoDto(descricao, valor, dataInicio, dataFinal, meta,  conta.getId());
-//        ValidadorObjetivoService validadorObjetivosService = new ValidadorObjetivoService();
+        ValidadorObjetivoService validadorObjetivosService = new ValidadorObjetivoService();
         HashMap<String, String> erros = new HashMap<String, String>();
-//        validadorObjetivosService.validar(objetivoDto, erros);
+        validadorObjetivosService.validar(objetivoDto, erros);
 
 
         if (erros.isEmpty()){

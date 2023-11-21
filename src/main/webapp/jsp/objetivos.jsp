@@ -193,10 +193,10 @@
         };
     });
 
-    function abrirModal(id, descricao, valor) {
+    function abrirModal(id, valor) {
         // Preencher os campos do modal com os valores do objetivo
         document.getElementById("editId").value = id;
-        document.getElementById("editValor").value = valor;
+        document.getElementById("editValor").value = "";
 
         // Exibir o modal
         document.getElementById("modalEditar").style.display = "block";
